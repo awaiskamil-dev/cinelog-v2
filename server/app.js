@@ -39,7 +39,7 @@ app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
 
 app.use('/api/v1/auth', authRouter);
-app.user('/api/v1/entries', entryRouter);
+app.use('/api/v1/entries', entryRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
