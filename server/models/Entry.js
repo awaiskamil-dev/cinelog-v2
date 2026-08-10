@@ -32,6 +32,10 @@ const EntrySchema = new mongoose.Schema({
     type: String,
     maxLength: 2000,
   },
+  recommendation: {
+    type: String,
+    enum: ['recommended', 'mixed', 'not-recommended'],
+  },
   dateWatched: {
     type: Date,
   },
