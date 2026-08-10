@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const EntrySchema = new mongoose.Schema({
   user: {
     type: mongoose.Types.ObjectId,
-    ref: user,
+    ref: 'User',
     required: true,
   },
   tmdbId: {
