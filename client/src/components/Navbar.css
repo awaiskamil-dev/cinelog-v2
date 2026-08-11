@@ -1,0 +1,34 @@
+.nav-left-section a{
+  display: flex;
+  align-items: center;
+}
+nav{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 68px;
+  background-color: #141414;
+  align-items: center;
+  overflow: hidden;
+}
+.nav-left-section{
+  display: flex;
+  align-items: center;
+  margin-left: 150px;
+}
+.nav-right-section{
+  margin-right: 150px;
+}
+.logo{
+  height: 100px;
+}
+.logo-name{
+  font-family: Bebas Neue;
+  font-weight: 500;
+  color: #F5A623;
+  font-size: 26px;
+  margin-left: -6px;
+}
+.home-link{
+  margin-right: 15px;
+}
