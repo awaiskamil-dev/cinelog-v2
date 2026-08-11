@@ -1,0 +1,56 @@
+.search-bar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-top: 50px;
+}
+
+.search-group, .genre-group, .year-group, .format-group{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.genre-group, .year-group, .format-group{
+  position: relative;
+}
+
+.fa-angle-down{
+  position: absolute;
+  top: 40px;
+  right: 12px;
+}
+
+.search-input, .genre-select, .year-select, .format-select{
+  background-color: #141414;
+  color: #C9B99A;
+  height: 38px;
+  width: 230px;
+  border-style: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.search-input{
+  padding-left: 40px;
+  font-size: 14px;
+}
+
+.search-bar label{
+  font-size: 15px;
+  font-weight: 600;
+  color:  #F5A623
+}
+
+.search-group, .genre-group, .year-group, .format-group{
+  position: relative;
+}
+
+.fa-magnifying-glass{
+  position: absolute;
+  top: 40px;
+  left: 15px;
+}
