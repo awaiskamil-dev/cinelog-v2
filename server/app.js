@@ -18,6 +18,8 @@ const connectDB = require('./db/connect');
 //  routers
 const authRouter = require('./routes/authRoutes');
 const entryRouter = require('./routes/entryRoutes');
+const movieRouter = require('./routes/movieRoutes');
+const tvRouter = require('./routes/tvRoutes');
 
 // middleware
 const notFoundMiddleware = require('./middleware/not-found');
@@ -40,6 +42,8 @@ app.use(cookieParser(process.env.JWT_SECRET));
 
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/entries', entryRouter);
+app.use('/api/v1/movies', movieRouter);
+app.use('/api/v1/tv', tvRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
