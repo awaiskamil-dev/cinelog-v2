@@ -1,12 +1,12 @@
 import './SearchBar.css';
-import { useState } from 'react';
 
-function SearchBar(){
-  const [searchInput, setSearchInput] = useState('');
-  const [genreSelect, setGenreSelect] = useState('Any');
-  const [yearSelect, setYearSelect] = useState('Any');
-  const [formatSelect, setFormatSelect] = useState('Any');
-
+function SearchBar({
+  searchInput, setSearchInput,
+  genreSelect, setGenreSelect,
+  yearSelect, setYearSelect,
+  formatSelect, setFormatSelect,
+  results, setResults,
+}){
   const currentYear = new Date().getFullYear();
   const startYear = 1970;
   const endYear = currentYear + 2;
