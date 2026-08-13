@@ -8,7 +8,8 @@ const {
   getDiscover,
   getSearch,
   getAction,
-  getAnimation
+  getAnimation,
+  getMovieDetails
 } = require('../controllers/movieController');
 
 router.route('/trending').get(getTrending);
@@ -19,5 +20,6 @@ router.route('/discover').get(getDiscover);
 router.route('/search').get(getSearch);
 router.route('/action').get(getAction);
 router.route('/animation').get(getAnimation);
+router.route('/:id').get(getMovieDetails);
 
 module.exports = router;

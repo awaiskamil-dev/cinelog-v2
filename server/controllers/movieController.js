@@ -1,31 +1,55 @@
 require('dotenv').config();
 const {StatusCodes} = require('http-status-codes');
-const {movieGenreMap, tvGenreMap, filterResults} = require('../utils');
+const {movieGenreMap, tvGenreMap, filterResults, getCached, setCached} = require('../utils');
 
 const getTrending = async (req, res) => {
+  const cached = getCached('trending-movies');
+  if(cached){
+    return res.status(StatusCodes.OK).json(cached);
+  }
+
   const response = await fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${process.env.TMDB_API_KEY}`);
   const data = await response.json();
-  
+  setCached('trending-movies', data);
+
   res.status(StatusCodes.OK).json(data);
 };
 
 const getPopular = async (req, res) => {
+  const cached = getCached('popular-movies');
+  if(cached){
+    return res.status(StatusCodes.OK).json(cached);
+  }
+
   const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_API_KEY}`);
   const data = await response.json();
-  
+  setCached('popular-movies', data);
+
   res.status(StatusCodes.OK).json(data);
 };
 
 const getTopRated = async (req, res) => {
+  const cached = getCached('top-rated-movies');
+  if(cached){
+    return res.status(StatusCodes.OK).json(cached);
+  }
+
   const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.TMDB_API_KEY}`);
   const data = await response.json();
+  setCached('top-rated-movies', data);
   
   res.status(StatusCodes.OK).json(data);
 };
 
 const getUpcoming = async (req, res) => {
+  const cached = getCached('upcoming-movies');
+  if(cached){
+    return res.status(StatusCodes.OK).json(cached);
+  }
+
   const response = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.TMDB_API_KEY}`);
   const data = await response.json();
+  setCached('upcoming-movies', data);
   
   res.status(StatusCodes.OK).json(data);
 };
@@ -88,14 +112,35 @@ const getSearch = async (req, res) => {
 };
 
 const getAction = async (req, res) => {
+  const cached = getCached('action-movies');
+  if(cached){
+    return res.status(StatusCodes.OK).json(cached);
+  }
+
   const response = await fetch(`https://api.themoviedb.org/3/discover/movie?with_genres=28&api_key=${process.env.TMDB_API_KEY}`);
   const data = await response.json();
+  setCached('action-movies', data);
   
   res.status(StatusCodes.OK).json(data);
 };
 
 const getAnimation = async (req, res) => {
+  const cached = getCached('animation-movies');
+  if(cached){
+    return res.status(StatusCodes.OK).json(cached);
+  }
+
   const response = await fetch(`https://api.themoviedb.org/3/discover/movie?with_genres=16&api_key=${process.env.TMDB_API_KEY}`);
+  const data = await response.json();
+  setCached('animation-movies', data);
+  
+  res.status(StatusCodes.OK).json(data);
+};
+
+const getMovieDetails = async (req, res) => {
+  const {id} = req.params;
+
+  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.TMDB_API_KEY}&append_to_response=credits`)
   const data = await response.json();
   
   res.status(StatusCodes.OK).json(data);
@@ -109,5 +154,6 @@ module.exports = {
   getDiscover,
   getSearch,
   getAction,
-  getAnimation
+  getAnimation,
+  getMovieDetails
 };

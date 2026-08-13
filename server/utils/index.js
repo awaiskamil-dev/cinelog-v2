@@ -5,6 +5,7 @@ const sendResetPassswordEmail = require('./sendResetPasswordEmail');
 const createHash = require('./createHash');
 const filterResults = require('./filterResults');
 const {movieGenreMap, tvGenreMap} = require('./genreMaps');
+const {getCached, setCached} = require('./cache');
 
 module.exports = {
   createJWT,
@@ -16,5 +17,7 @@ module.exports = {
   createHash,
   filterResults,
   movieGenreMap,
-  tvGenreMap
+  tvGenreMap,
+  getCached, 
+  setCached
 };
