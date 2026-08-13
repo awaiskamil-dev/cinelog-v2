@@ -19,7 +19,6 @@ const Home = function(){
         setYearSelect={setYearSelect}
         formatSelect={formatSelect}
         setFormatSelect={setFormatSelect}
-        results={results}
         setResults={setResults}
       />
     </>
