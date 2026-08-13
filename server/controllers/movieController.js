@@ -1,15 +1,6 @@
 require('dotenv').config();
 const {StatusCodes} = require('http-status-codes');
-
-const movieGenreMap = {
-  action: 28, comedy: 35, drama: 18, horror: 27,
-  'sci-fi': 878, romance: 10749, animation: 16, thriller: 53,
-};
-
-const tvGenreMap = {
-  action: 10759, comedy: 35, drama: 18, horror: 9648,
-  'sci-fi': 10765, romance: 10766, animation: 16, thriller: 9648,
-};
+const {movieGenreMap, tvGenreMap, filterResults} = require('../utils');
 
 const getTrending = async (req, res) => {
   const response = await fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${process.env.TMDB_API_KEY}`);
@@ -77,12 +68,23 @@ const getDiscover = async (req, res) => {
 };
 
 const getSearch = async (req, res) => {
-  const {query} = req.query;
-
-  const response = await fetch(`https://api.themoviedb.org/3/search/multi?&api_key=${process.env.TMDB_API_KEY}&query=${query}`);
-  const data = await response.json();
+  const {query, genre, year, format} = req.query;
+  const pageCount = 3;
   
-  res.status(StatusCodes.OK).json(data);
+  const fetches = [];
+  for(let p = 1; p <= pageCount; p++){
+    fetches.push(
+      fetch(`https://api.themoviedb.org/3/search/multi?api_key=${process.env.TMDB_API_KEY}&query=${query}&page=${p}`)
+      .then((response) => response.json())
+      .then((data) => data.results)
+    );
+  };
+
+  const pages = await Promise.all(fetches);
+  const combinedResults = pages.flat();
+  const filteredResults = filterResults(combinedResults, {genre, year, format});
+  
+  res.status(StatusCodes.OK).json({results: filteredResults});
 };
 
 const getAction = async (req, res) => {

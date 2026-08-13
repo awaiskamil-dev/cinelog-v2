@@ -3,6 +3,8 @@ const createTokenUser = require('./createTokenUser');
 const sendVerificationEmail = require('./sendVerificationEmail');
 const sendResetPassswordEmail = require('./sendResetPasswordEmail');
 const createHash = require('./createHash');
+const filterResults = require('./filterResults');
+const {movieGenreMap, tvGenreMap} = require('./genreMaps');
 
 module.exports = {
   createJWT,
@@ -11,5 +13,8 @@ module.exports = {
   createTokenUser,
   sendVerificationEmail,
   sendResetPassswordEmail,
-  createHash
+  createHash,
+  filterResults,
+  movieGenreMap,
+  tvGenreMap
 };
