@@ -1,0 +1,44 @@
+.movie-row-div{
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  gap: 30px;
+  padding-bottom: 10px;
+  margin-bottom: 50px;
+  scrollbar-width: none;
+}
+.scroll-container{
+  position: relative;
+}
+.scroll-container button{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  height: 40px;
+  width: 40px;
+  background-color: rgba(20, 20, 20, 0.9) ;
+  border-radius: 20px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.scroll-container:hover button{
+  opacity: 1;
+}
+.scroll-left{
+  left: 0;
+}
+.scroll-right{
+  right: 5px;
+}
+.scroll-left, .scroll-right{
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+.scroll-left.hidden, .scroll-right.hidden{
+  opacity: 0;
+  pointer-events: none;
+}

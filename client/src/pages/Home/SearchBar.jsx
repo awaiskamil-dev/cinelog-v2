@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import './SearchBar.css';
+import API_URL from '../../config';
 
 function SearchBar({
   searchInput, setSearchInput,
@@ -33,14 +34,14 @@ function SearchBar({
       const formatValue = formatSelect === 'Any' ? '' : formatSelect.toLowerCase();
 
       if(searchInput !== ''){
-        url = `http://localhost:5000/api/v1/movies/search?query=${searchInput}&genre=${genreValue}&year=${yearValue}&format=${formatValue}`;  
+        url = `${API_URL}/movies/search?query=${searchInput}&genre=${genreValue}&year=${yearValue}&format=${formatValue}`;  
       }
       else if(
         genreSelect !== 'Any' ||
         yearSelect !== 'Any' ||
         formatSelect !== 'Any'
       ){
-        url = `http://localhost:5000/api/v1/movies/discover?genre=${genreValue}&year=${yearValue}&format=${formatValue}`;
+        url = `${API_URL}/movies/discover?genre=${genreValue}&year=${yearValue}&format=${formatValue}`;
       }
 
       const response = await fetch(url);

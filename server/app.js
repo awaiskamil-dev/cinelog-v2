@@ -25,25 +25,31 @@ const tvRouter = require('./routes/tvRoutes');
 const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
 
+const authLimiter = rateLimiter({
+  windowMs: 15 * 60 * 1000,
+  max: 20,
+  message: 'Too many attempts, please try again later.',
+});
+const apiLimiter = rateLimiter({
+  windowMs: 15 * 60 * 1000,
+  max: 300,
+});
+
 app.set('trust proxy', 1);
-app.use(
-  rateLimiter({
-    windowMs: 15 * 60 * 1000,
-    max: 60,
-  })
-);
+app.use(cors({
+  origin: 'http://localhost:5173'
+}));
 app.use(helmet());
-app.use(cors());
 app.use(xss());
 app.use(mongoSanitize());
 
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
 
-app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/auth', authLimiter, authRouter);
 app.use('/api/v1/entries', entryRouter);
-app.use('/api/v1/movies', movieRouter);
-app.use('/api/v1/tv', tvRouter);
+app.use('/api/v1/movies', apiLimiter, movieRouter);
+app.use('/api/v1/tv', apiLimiter, tvRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);

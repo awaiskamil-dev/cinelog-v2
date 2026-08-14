@@ -1,0 +1,49 @@
+.movie-card{
+  flex-shrink: 0;
+  position: relative;
+}
+.movie-poster{
+  height: 265px;
+  width: 185px;
+  object-fit: cover;
+}
+.movie-poster, .movie-card{
+  border-radius: 8px;
+}
+.movie-name{
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 7px;
+  color: #C9B99A;
+  width: 185px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+}
+.card-overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.7);
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 26px;
+  transition: opacity 0.3s ease;
+  border-radius: 8px;
+  height: 265px;
+  width: 185px;
+}
+.movie-card:hover .card-overlay, .movie-card:hover .movie-name{
+  color: #F5A623;
+  opacity: 1;
+}
+.card-overlay i{
+  margin-bottom: 18px;
+  font-size: 22px;
+}
+.fa-bookmark.active, .fa-eye.active{
+  color: #F5A623;
+}

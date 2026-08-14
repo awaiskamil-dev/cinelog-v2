@@ -1,0 +1,17 @@
+.results-grid{
+  margin-top: 45px;
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-bottom: 45px;
+}
+.results-section{
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.movie-grid{
+  margin-top: 45px;
+  margin-left: 150px;
+  margin-right: 150px;
+}
