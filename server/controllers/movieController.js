@@ -1,6 +1,6 @@
 require('dotenv').config();
 const {StatusCodes} = require('http-status-codes');
-const {movieGenreMap, tvGenreMap, filterResults, getCached, setCached} = require('../utils');
+const {movieGenreMap, tvGenreMap, filterResults, getCached, setCached, appendMediaType} = require('../utils');
 
 const getTrending = async (req, res) => {
   const cached = getCached('trending-movies');
@@ -23,6 +23,7 @@ const getPopular = async (req, res) => {
 
   const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_API_KEY}`);
   const data = await response.json();
+  appendMediaType({results: data.results}, 'movie');
   setCached('popular-movies', data);
 
   res.status(StatusCodes.OK).json(data);
@@ -36,6 +37,7 @@ const getTopRated = async (req, res) => {
 
   const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.TMDB_API_KEY}`);
   const data = await response.json();
+  appendMediaType({results: data.results}, 'movie');
   setCached('top-rated-movies', data);
   
   res.status(StatusCodes.OK).json(data);
@@ -49,6 +51,7 @@ const getUpcoming = async (req, res) => {
 
   const response = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.TMDB_API_KEY}`);
   const data = await response.json();
+  appendMediaType({results: data.results}, 'movie');
   setCached('upcoming-movies', data);
   
   res.status(StatusCodes.OK).json(data);
@@ -119,6 +122,7 @@ const getAction = async (req, res) => {
 
   const response = await fetch(`https://api.themoviedb.org/3/discover/movie?with_genres=28&api_key=${process.env.TMDB_API_KEY}`);
   const data = await response.json();
+  appendMediaType({results: data.results}, 'movie');
   setCached('action-movies', data);
   
   res.status(StatusCodes.OK).json(data);
@@ -132,6 +136,7 @@ const getAnimation = async (req, res) => {
 
   const response = await fetch(`https://api.themoviedb.org/3/discover/movie?with_genres=16&api_key=${process.env.TMDB_API_KEY}`);
   const data = await response.json();
+  appendMediaType({results: data.results}, 'movie');
   setCached('animation-movies', data);
   
   res.status(StatusCodes.OK).json(data);

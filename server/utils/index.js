@@ -6,6 +6,7 @@ const createHash = require('./createHash');
 const filterResults = require('./filterResults');
 const {movieGenreMap, tvGenreMap} = require('./genreMaps');
 const {getCached, setCached} = require('./cache');
+const appendMediaType = require('./appendMediaType');
 
 module.exports = {
   createJWT,
@@ -19,5 +20,6 @@ module.exports = {
   movieGenreMap,
   tvGenreMap,
   getCached, 
-  setCached
+  setCached,
+  appendMediaType
 };
