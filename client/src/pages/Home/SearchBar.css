@@ -17,7 +17,7 @@
   position: relative;
 }
 
-.fa-angle-down{
+.search-bar .fa-angle-down{
   position: absolute;
   top: 40px;
   right: 12px;

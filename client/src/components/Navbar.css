@@ -9,7 +9,6 @@ nav{
   height: 68px;
   background-color: #141414;
   align-items: center;
-  overflow: hidden;
 }
 .nav-left-section{
   display: flex;
@@ -18,6 +17,8 @@ nav{
 }
 .nav-right-section{
   margin-right: 150px;
+  display: flex;
+  align-items: center;
 }
 .logo{
   height: 100px;
@@ -29,12 +30,88 @@ nav{
   font-size: 26px;
   margin-left: -6px;
 }
-.home-link{
+.home-link, .watchlist-link{
   margin-right: 15px;
 }
-.fa-xmark{
-  position: absolute;
-  top: 40px;
-  right: 12px;
+.nav-login{
+  margin-right: 15px;
+}
+.nav-signup{
+  background-color: #F5A623;
+  color: #0A0A0A !important;
+  padding: 8px 18px;
+  border-radius: 5px;
+  font-weight: 700;
+}
+.nav-signup:hover{
+  background-color: #ffb84d;
+}
+.nav-avatar-wrapper{
+  position: relative;
+}
+
+.nav-avatar{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 6px;
   cursor: pointer;
+}
+
+.nav-avatar img{
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  display: block;
+}
+
+.nav-avatar .fa-angle-down{
+  color: #F5A623;
+  font-size: 12px;
+  transition: transform 0.2s ease;
+  margin-top: 8px;
+}
+
+.nav-dropdown{
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-top: 10px;
+  z-index: 10;
+}
+
+.nav-dropdown-inner{
+  background-color: #1e1e1e;
+  border: 1px solid #262626;
+  border-radius: 6px;
+  min-width: 100px;
+  padding: 4px;
+}
+
+.nav-dropdown-item{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #C9B99A;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.nav-dropdown-item i{
+  color: #C9B99A;
+  font-size: 12px;
+  transition: color 0.15s ease;
+}
+
+.nav-dropdown-item:hover,
+.nav-dropdown-item:hover i{
+  color: #F5A623;
 }
