@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import API_URL from '../config';
 
 function Navbar(){
-  const {user, setUser} = useAuth();
+  const {user, setUser, isLoading} = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const isReady = useRef(false);
   const navigate = useNavigate();
@@ -45,10 +45,12 @@ function Navbar(){
       </Link>
     </div>
     <div className="nav-right-section">
-      <Link className="home-link" to="/">
-        Home
-      </Link>
-      {user? 
+      {isLoading? null : (
+        <Link className="home-link" to="/">
+          Home
+        </Link>
+      )}
+      {isLoading? null : (user? 
       ( 
         <>
           <Link to="/watchlist" className='watchlist-link'>
@@ -86,7 +88,7 @@ function Navbar(){
             Sign Up
           </Link>
         </>
-      )}
+      ))}
      
       
     </div>

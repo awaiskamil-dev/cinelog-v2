@@ -163,7 +163,7 @@ const resetPassword = async (req, res) => {
     }
   }
 
-  res.send('reset password');
+  res.status(StatusCodes.OK).json({msg: 'Your password has been reset. You can now log in with your new password.'});
 };
 
 const getCurrentUser = async (req, res) => {
