@@ -1,6 +1,7 @@
 const CustomError = require('../errors');
 const { isTokenValid, attachCookiesToResponse } = require('../utils');
 const Token = require('../models/Token');
+const crypto = require('crypto');
 
 const authenticateUser = async (req, res, next) => {
   const {refreshToken, accessToken} = req.signedCookies;
@@ -22,10 +23,14 @@ const authenticateUser = async (req, res, next) => {
       throw new CustomError.UnauthenticatedError('Authentication Invalid');
     }
 
+    const newRefreshToken = crypto.randomBytes(40).toString('hex');
+    existingToken.refreshToken = newRefreshToken;
+    await existingToken.save();
+
     attachCookiesToResponse({
       res,
       user: payload.user,
-      refreshToken: payload.refreshToken
+      refreshToken: newRefreshToken,
     });
 
     req.user = payload.user;

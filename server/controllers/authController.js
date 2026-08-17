@@ -92,7 +92,7 @@ const login = async (req, res) => {
   refreshToken = crypto.randomBytes(40).toString('hex');
   const userAgent = req.headers['user-agent'];
   const ip = req.ip;
-  const userToken = {refreshToken, ip, userAgent, user: user._id};
+  const userToken = {refreshToken, ip, userAgent, user: user._id, isValid: true};
 
   await Token.create(userToken);
   attachCookiesToResponse({res, user: tokenUser, refreshToken});
@@ -166,11 +166,16 @@ const resetPassword = async (req, res) => {
   res.send('reset password');
 };
 
+const getCurrentUser = async (req, res) => {
+  res.status(StatusCodes.OK).json({user: req.user});
+}
+
 module.exports = {
   register,
   login,
   logout,
   verifyEmail,
   forgotPassword,
-  resetPassword
+  resetPassword,
+  getCurrentUser
 };
