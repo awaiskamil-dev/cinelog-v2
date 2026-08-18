@@ -3,7 +3,7 @@ import API_URL from "../../config";
 import './MovieRow.css';
 import MovieCard from "./MovieCard";
 
-const MovieRow = function({title, endpoint}){
+const MovieRow = function({title, endpoint, userEntries, onStatusChange}){
   const [results, setResults] = useState([]);
   
   useEffect(() => {
@@ -25,7 +25,8 @@ const MovieRow = function({title, endpoint}){
         </button>
         <div className="movie-row-div">
           {results.map((item) => {
-            return <MovieCard key={item.id} movie={item}/>
+            const myEntry = userEntries.find((entry) => entry.tmdbId === item.id);
+            return <MovieCard key={item.id} movie={item} status={myEntry?.status} onStatusChange={onStatusChange}/>
           })}
         </div>
         <button className="scroll-right">

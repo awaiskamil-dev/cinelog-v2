@@ -54,3 +54,9 @@
   top: 40px;
   left: 15px;
 }
+.fa-xmark{
+  position: absolute;
+  top: 40px;
+  right: 12px;
+  cursor: pointer;
+}
