@@ -7,11 +7,13 @@ import CheckEmail from './pages/Verify-Email/CheckEmail';
 import VerifyToken from './pages/Verify-Email/VerifyToken';
 import ForgotPassword from './pages/Forgot-Password/ForgotPassword';
 import ResetPassword from './pages/Forgot-Password/ResetPassword';
+import Toast from './components/Toast';
 
 function App() {
   return(
     <BrowserRouter>
       <Navbar/>
+      <Toast/>
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/login' element={<Login/>}/>

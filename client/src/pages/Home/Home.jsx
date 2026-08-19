@@ -5,6 +5,7 @@ import MovieCard from "./MovieCard";
 import './Home.css';
 import API_URL from "../../config";
 import useAuth from '../../context/useAuth';
+import useToast from "../../context/useToast";
 
 const Home = function(){
   const [searchInput, setSearchInput] = useState('');
@@ -15,6 +16,7 @@ const Home = function(){
   const [userEntries, setUserEntries] = useState([]);
 
   const {user} = useAuth();
+  const {showToast} = useToast();
 
   const filtersActive = 
     searchInput !== '' ||
@@ -23,7 +25,10 @@ const Home = function(){
     formatSelect !== 'Any';
 
     useEffect(() => {
-      if(!user) return;
+      if(!user){
+        setUserEntries([]);
+        return;
+      };
 
       const fetchUserEntries = async () => {
         const response = await fetch(`${API_URL}/entries/me`, {
@@ -36,6 +41,11 @@ const Home = function(){
     }, [user]);
 
     const handleStatusChange = async (movie, clickedStatus) => {
+      if(!user){
+        showToast('Please log in to save movies', 'error');
+        return;
+      }
+
       const previousEntries = userEntries;
 
       const existingEntry = userEntries.find(
@@ -69,6 +79,10 @@ const Home = function(){
       }
 
       try {
+        const title =
+            movie.media_type === 'movie' ? movie.title : movie.name;
+        const toastStatus = clickedStatus === 'watched'? 'completed' : 'planning';
+
         if (isRemoving) {
           const res = await fetch(`${API_URL}/entries/${movie.id}`, {
             method: 'DELETE',
@@ -78,10 +92,9 @@ const Home = function(){
           if (!res.ok) {
             throw new Error('Failed to remove entry');
           }
+          
+          showToast(`${title} removed from ${toastStatus} list`, 'success');
         } else {
-          const title =
-            movie.media_type === 'movie' ? movie.title : movie.name;
-
           const res = await fetch(`${API_URL}/entries`, {
             method: 'POST',
             headers: {
@@ -99,9 +112,11 @@ const Home = function(){
           if (!res.ok) {
             throw new Error('Failed to save entry');
           }
+
+          showToast(`${title} added to ${toastStatus} list`, 'success');
         }
       } catch (err) {
-        console.log(err);
+        showToast(err.message, 'error');
         setUserEntries(previousEntries);
       }
     };
