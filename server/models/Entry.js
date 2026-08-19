@@ -18,9 +18,17 @@ const EntrySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  releaseDate: {
+    type: Number,
+    required: true,
+  },
+  mediaType: {
+    type: String,
+    required: true,
+  },
   status: {
     type: String,
-    enum: ['plan-to-watch', 'watching', 'watched'],
+    enum: ['plan-to-watch', 'watching', 'watched', 'dropped'],
     default: 'plan-to-watch',
   },
   rating: {

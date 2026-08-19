@@ -32,7 +32,7 @@ const getMovieEntries = async (req, res) => {
 };
 
 const createOrUpdateEntry = async (req, res) => {
-  const {tmdbId, title, posterPath, rating, review, status, dateWatched} = req.body;
+  const {tmdbId, title, posterPath, releaseDate, mediaType, rating, review, status, dateWatched} = req.body;
 
   if(!tmdbId || !title){
     throw new CustomError.BadRequestError('Please provide both tmdbId and title');
@@ -42,7 +42,7 @@ const createOrUpdateEntry = async (req, res) => {
 
   const entry = await Entry.findOneAndUpdate(
     {user: req.user.userId, tmdbId},
-    {tmdbId, title, posterPath, rating, review, recommendation, status, dateWatched},
+    {tmdbId, title, posterPath, releaseDate, mediaType, rating, review, recommendation, status, dateWatched},
     {new: true, runValidators: true, upsert: true, setDefaultsOnInsert: true}
   );
 

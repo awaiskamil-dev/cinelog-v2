@@ -1,0 +1,83 @@
+.watchlist-table-section{
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-bottom: 45px;
+}
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #141414;
+  border-radius: 8px;
+}
+
+tr{
+  height: 40px;
+}
+
+td{
+  padding: 8px 20px;
+}
+
+.watchlist-heading{
+  padding-left: 20px;
+}
+
+tbody tr:hover{
+  background-color: #303030;
+}
+
+.heading-row{
+  text-align: left;
+}
+
+.title-heading{
+  width: 75%;
+  padding-left: 72px;
+}
+
+tbody tr{
+  color: #C9B99A;
+}
+
+.title-row{
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.col-stats{
+  text-align: center;
+}
+
+.poster-popup{
+  position: absolute;
+  height: 160px;
+  width: 108px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 4px;
+  z-index: 100;
+  top: -35px;
+  left: -120px;
+}
+
+.poster-popup img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.title-row:hover .poster-popup{
+  opacity: 1;
+}
+
+.poster-thumb{
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}

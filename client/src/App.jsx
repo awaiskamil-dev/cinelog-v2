@@ -8,6 +8,7 @@ import VerifyToken from './pages/Verify-Email/VerifyToken';
 import ForgotPassword from './pages/Forgot-Password/ForgotPassword';
 import ResetPassword from './pages/Forgot-Password/ResetPassword';
 import Toast from './components/Toast';
+import Watchlist from './pages/Watchlist/Watchlist';
 
 function App() {
   return(
@@ -22,6 +23,7 @@ function App() {
         <Route path='/user/verify-email' element={<VerifyToken/>}/>
         <Route path='/forgot' element={<ForgotPassword/>}/>
         <Route path='/user/reset-password' element={<ResetPassword/>}/>
+        <Route path='/watchlist' element={<Watchlist/>}/>
       </Routes>
     </BrowserRouter>
   );
