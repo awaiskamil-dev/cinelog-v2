@@ -1,6 +1,7 @@
 .movie-card{
   flex-shrink: 0;
   position: relative;
+  cursor: pointer;
 }
 .movie-poster{
   height: 265px;
