@@ -10,13 +10,13 @@ const Overview = function({type, data}){
   return(
     <main className="overview-page">
       <OverviewHero type={type} data={data}/>
-      <OverviewSummary/>
+      <OverviewSummary data={data}/>
   
       <div className="overview-body">
         <OverviewSidebar type={type} data={data}/>
   
         <div className="overview-main">
-          <Cast/>
+          <Cast data={data}/>
           <Reviews/>
         </div>
       </div>
