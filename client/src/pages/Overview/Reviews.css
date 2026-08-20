@@ -1,0 +1,49 @@
+.review-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin-bottom: 14px;
+}
+
+.review-card__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.review-author {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.review-verdict {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+.review-verdict--recommended {
+  color: #4caf7d;
+  background: rgba(76, 175, 125, 0.12);
+}
+
+.review-verdict--mixed {
+  color: var(--accent-gold);
+  background: rgba(245, 166, 35, 0.12);
+}
+
+.review-verdict--not-recommended {
+  color: #e0574f;
+  background: rgba(224, 87, 79, 0.12);
+}
+
+.review-text {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
+}

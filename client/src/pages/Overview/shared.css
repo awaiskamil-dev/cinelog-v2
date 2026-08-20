@@ -1,0 +1,23 @@
+.section-heading {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 18px;
+}
+
+.genre-tag {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--card-raised);
+  border: 1px solid var(--border);
+  padding: 5px 12px;
+  border-radius: 20px;
+}
+
+.genre-tag--sm {
+  font-size: 11px;
+  padding: 4px 10px;
+}

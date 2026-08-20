@@ -1,0 +1,30 @@
+.cast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 16px;
+}
+
+.cast-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cast-photo {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border-radius: 6px;
+  background: var(--card);
+  border: 1px solid var(--border);
+}
+
+.cast-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.cast-character {
+  font-size: 12px;
+  color: var(--text-dim);
+}

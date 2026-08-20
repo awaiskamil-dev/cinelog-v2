@@ -1,0 +1,19 @@
+.overview-summary {
+  max-width: 1100px;
+  margin: 44px auto 0;
+  padding: 0 150px;
+}
+
+.overview-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 0;
+  max-width: 800px;
+}
+
+@media (max-width: 900px) {
+  .overview-summary{
+    padding: 0 24px;
+  }
+}

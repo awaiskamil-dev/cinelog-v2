@@ -1,3 +1,17 @@
+:root {
+  --bg: #0a0a0a;
+  --card: #141414;
+  --card-raised: #1a1a1a;
+  --border: #262626;
+  --accent-gold: #f5a623;
+  --accent-gold-dim: #a17f38;
+  --muted: #c9b99a;
+  --text: #f2f2f2;
+  --text-dim: #8a8a8a;
+
+  --font-display: "Bebas Neue", "Arial Narrow", sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
 #desktop-only {
     display: none;
 }
