@@ -70,7 +70,7 @@ tbody tr{
   border-radius: 4px;
 }
 
-.title-row:hover .poster-popup{
+tbody tr:hover .poster-popup{
   opacity: 1;
 }
 

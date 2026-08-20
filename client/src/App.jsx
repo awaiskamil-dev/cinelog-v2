@@ -9,6 +9,7 @@ import ForgotPassword from './pages/Forgot-Password/ForgotPassword';
 import ResetPassword from './pages/Forgot-Password/ResetPassword';
 import Toast from './components/Toast';
 import Watchlist from './pages/Watchlist/Watchlist';
+import Overview from './pages/Overview/Overview';
 
 function App() {
   return(
@@ -24,6 +25,7 @@ function App() {
         <Route path='/forgot' element={<ForgotPassword/>}/>
         <Route path='/user/reset-password' element={<ResetPassword/>}/>
         <Route path='/watchlist' element={<Watchlist/>}/>
+        <Route path='/title' element={<Overview/>}/>
       </Routes>
     </BrowserRouter>
   );
