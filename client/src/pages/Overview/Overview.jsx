@@ -6,14 +6,14 @@ import OverviewSidebar from './OverviewSidebar';
 import Cast from './Cast';
 import Reviews from './Reviews';
 
-const Overview = function(){
+const Overview = function({type, data}){
   return(
     <main className="overview-page">
-      <OverviewHero/>
+      <OverviewHero type={type} data={data}/>
       <OverviewSummary/>
   
       <div className="overview-body">
-        <OverviewSidebar/>
+        <OverviewSidebar type={type} data={data}/>
   
         <div className="overview-main">
           <Cast/>

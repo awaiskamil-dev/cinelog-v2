@@ -9,7 +9,8 @@ import ForgotPassword from './pages/Forgot-Password/ForgotPassword';
 import ResetPassword from './pages/Forgot-Password/ResetPassword';
 import Toast from './components/Toast';
 import Watchlist from './pages/Watchlist/Watchlist';
-import Overview from './pages/Overview/Overview';
+import MoiveOverview from './pages/Overview/MovieOverview';
+import TvOverview from './pages/Overview/TvOverview';
 
 function App() {
   return(
@@ -25,7 +26,8 @@ function App() {
         <Route path='/forgot' element={<ForgotPassword/>}/>
         <Route path='/user/reset-password' element={<ResetPassword/>}/>
         <Route path='/watchlist' element={<Watchlist/>}/>
-        <Route path='/title' element={<Overview/>}/>
+        <Route path='/movie/:id' element={<MoiveOverview/>}/>
+        <Route path='/tv/:id' element={<TvOverview/>}/>
       </Routes>
     </BrowserRouter>
   );
