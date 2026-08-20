@@ -10,8 +10,12 @@ const TvOverview = function(){
   useEffect(() => {
     const fetchData = async () => {
       try{
-        const response = await fetch(`${API_URL}/movies/${id}`);
-        const data = response.json();
+        const response = await fetch(`${API_URL}/tv/${id}`);
+        const data = await response.json();
+        
+        if (!response.ok) {
+          throw new Error(`Failed to fetch tv show: ${response.status}`);
+        }
 
         setData(data);
       }catch(err){
@@ -20,6 +24,10 @@ const TvOverview = function(){
     };
     fetchData();
   }, [id]);
+
+  if(!data){
+    return <div></div>;
+  }
 
   return(
     <Overview type="tv" data={data}/>
