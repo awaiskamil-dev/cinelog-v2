@@ -11,12 +11,17 @@ import Toast from './components/Toast';
 import Watchlist from './pages/Watchlist/Watchlist';
 import MovieOverview from './pages/Overview/MovieOverview';
 import TvOverview from './pages/Overview/TvOverview';
+import ListEditorModal from './components/ListEditorModal';
+import useListEditor from './context/ListEditorContext/useListEditor';
 
 function App() {
+  const {isOpen} = useListEditor();
+  
   return(
     <BrowserRouter>
       <Navbar/>
       <Toast/>
+      {isOpen && <ListEditorModal/>}
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/login' element={<Login/>}/>

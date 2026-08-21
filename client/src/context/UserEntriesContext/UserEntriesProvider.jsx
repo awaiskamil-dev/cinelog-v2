@@ -91,7 +91,6 @@ const UserEntriesProvider = ({children}) => {
         
         showToast(`${title} removed from ${toastStatus} list`, 'success');
       } else {
-        console.log({ title, tmdbId: movie.id, year, mediaType: movie.media_type });
         const res = await fetch(`${API_URL}/entries`, {
           method: 'POST',
           headers: {

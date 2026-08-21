@@ -1,3 +1,7 @@
+import useListEditor from "../../context/ListEditorContext/useListEditor";
+import useUserEntries from "../../context/UserEntriesContext/useUserEntries";
+import { useState, useEffect } from "react";
+
 const TvOverviewHero = function({data}){
   const rating = data.vote_average > 0 ? data.vote_average.toFixed(1) : '-';
   const startYear = data.first_air_date?.slice(0, 4);
@@ -8,6 +12,26 @@ const TvOverviewHero = function({data}){
     : `${startYear} - Present`;
 
   const genres = data.genres.slice(0, 3);
+
+  const {openEditor} = useListEditor();
+  const {userEntries} = useUserEntries();
+  const entry = userEntries.find((entry) => entry.tmdbId === data.id);
+
+  const [status, setStatus] = useState(entry?.status || '');
+  
+  useEffect(() => {
+    setStatus(entry?.status || '');
+  }, [entry]);
+
+  const handleSelectChange = (e) => {
+    const value = e.target.value;
+
+    if (value === 'list-editor') {
+      openEditor(data, entry);
+      e.target.value = '';
+      return;
+    }
+  };
 
   return(
     <section className="overview-hero">
@@ -45,7 +69,7 @@ const TvOverviewHero = function({data}){
 
           <div className="hero-actions">
             <div className="status-select-wrapper">
-              <select className="status-select">
+              <select className="status-select" value={status} onChange={(e) => setStatus(e.target.value)} onClick={handleSelectChange}>
                 <option value="">Add to List</option>
                 <option value="watching">Watching</option>
                 <option value="watched">Completed</option>

@@ -3,7 +3,7 @@ import './WatchlistTable.css';
 
 const WatchlistTable = function({title, entries}){
   const navigate = useNavigate();
-
+  
   return(
     <div className="watchlist-table-section">
       <h2 className="watchlist-heading">{title}</h2>
@@ -20,6 +20,7 @@ const WatchlistTable = function({title, entries}){
           {
             entries.map((entry) => {
               const type = entry.mediaType === 'movie' ? 'Movie' : 'TV';
+              const rating = entry.rating ? entry.rating : '-';
               return(
                 <tr key={entry.tmdbId}>
                   <td className="title-row">
@@ -29,7 +30,7 @@ const WatchlistTable = function({title, entries}){
                     <img className="poster-thumb" src={`https://image.tmdb.org/t/p/w500${entry.posterPath}`} alt="Movie Poster"/>
                     <span className='entry-title' onClick={() => navigate(`/${entry.mediaType}/${entry.tmdbId}`)}>{entry.title}</span>
                   </td>
-                  <td className="col-stats">-</td>
+                  <td className="col-stats">{rating}</td>
                   <td className="col-stats">{entry.releaseDate}</td>
                   <td className="col-stats">{type}</td>
                 </tr>
