@@ -1,6 +1,6 @@
 import './Navbar.css';
 import logo from '../assets/cl-logo.png';
-import { Link, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import useAuth from '../context/useAuth';
 import defaultAvatar from '../assets/default-pfp.png';
 import { useEffect, useRef, useState } from 'react';
@@ -11,6 +11,11 @@ function Navbar(){
   const [isOpen, setIsOpen] = useState(false);
   const isReady = useRef(false);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const isOverviewPage = 
+    location.pathname.startsWith('/movie/') ||
+    location.pathname.startsWith('/tv/');
 
   useEffect(() => {
     isReady.current = false;
@@ -37,7 +42,7 @@ function Navbar(){
   };
 
   return (
-  <nav>
+  <nav className={`${isOverviewPage? 'navbar--transparent' : ''}`}>
     <div className="nav-left-section">
       <Link to="/">
         <img className="logo" src={logo}/>

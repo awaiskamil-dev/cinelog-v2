@@ -9,6 +9,17 @@ nav{
   height: 68px;
   background-color: #141414;
   align-items: center;
+  width: 100%;
+  z-index: 10;
+}
+.navbar--transparent {
+  position: absolute;
+  top: 0;
+  background: rgba(10, 10, 10, 0.35);
+  transition: background-color 0.25s ease;
+}
+.navbar--transparent:hover {
+  background-color: #141414;
 }
 .nav-left-section{
   display: flex;

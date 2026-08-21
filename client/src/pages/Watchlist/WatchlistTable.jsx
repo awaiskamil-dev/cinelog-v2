@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router';
 import './WatchlistTable.css';
 
 const WatchlistTable = function({title, entries}){
+  const navigate = useNavigate();
+
   return(
     <div className="watchlist-table-section">
       <h2 className="watchlist-heading">{title}</h2>
@@ -13,7 +16,7 @@ const WatchlistTable = function({title, entries}){
             <th className="col-stats">Type</th>
           </tr>
         </thead>
-        <tbody className="js-completed-tbody">
+        <tbody>
           {
             entries.map((entry) => {
               const type = entry.mediaType === 'movie' ? 'Movie' : 'TV';
@@ -24,7 +27,7 @@ const WatchlistTable = function({title, entries}){
                       <img src={`https://image.tmdb.org/t/p/w500${entry.posterPath}`} alt="Movie Poster Popup"/>
                     </div>
                     <img className="poster-thumb" src={`https://image.tmdb.org/t/p/w500${entry.posterPath}`} alt="Movie Poster"/>
-                    <span>{entry.title}</span>
+                    <span className='entry-title' onClick={() => navigate(`/${entry.mediaType}/${entry.tmdbId}`)}>{entry.title}</span>
                   </td>
                   <td className="col-stats">-</td>
                   <td className="col-stats">{entry.releaseDate}</td>

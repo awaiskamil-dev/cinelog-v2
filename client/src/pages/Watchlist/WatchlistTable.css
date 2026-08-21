@@ -81,3 +81,7 @@ tbody tr:hover .poster-popup{
   border-radius: 4px;
   flex-shrink: 0;
 }
+
+.entry-title{
+  cursor: pointer;
+}
