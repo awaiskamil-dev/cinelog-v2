@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router';
 import '../Login/Login.css';
 import { useState } from 'react';
-import useAuth from '../../context/useAuth';
+import useAuth from '../../context/AuthContext/useAuth';
 import API_URL from '../../config';
 
 const Register = function(){

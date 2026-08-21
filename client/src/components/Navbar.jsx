@@ -1,7 +1,7 @@
 import './Navbar.css';
 import logo from '../assets/cl-logo.png';
 import { Link, useLocation, useNavigate } from 'react-router';
-import useAuth from '../context/useAuth';
+import useAuth from '../context/AuthContext/useAuth';
 import defaultAvatar from '../assets/default-pfp.png';
 import { useEffect, useRef, useState } from 'react';
 import API_URL from '../config';

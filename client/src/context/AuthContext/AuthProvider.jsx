@@ -1,6 +1,6 @@
 import AuthContext from "./AuthContext";
 import { useState, useEffect } from "react";
-import API_URL from "../config";
+import API_URL from "../../config";
 
 const AuthProvider = ({children}) => {
   const [user, setUser] = useState(null);

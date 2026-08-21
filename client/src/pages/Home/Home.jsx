@@ -3,7 +3,7 @@ import SearchBar from "./SearchBar";
 import MovieRow from "./MovieRow";
 import MovieCard from "./MovieCard";
 import './Home.css';
-import useUserEntries from '../../context/useUserEntries';
+import useUserEntries from '../../context/UserEntriesContext/useUserEntries';
 
 const Home = function(){
   const [searchInput, setSearchInput] = useState('');

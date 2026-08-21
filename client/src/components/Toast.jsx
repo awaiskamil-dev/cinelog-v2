@@ -1,4 +1,4 @@
-import useToast from '../context/useToast';
+import useToast from '../context/ToastContext/useToast';
 import './Toast.css';
 
 const Toast = function(){

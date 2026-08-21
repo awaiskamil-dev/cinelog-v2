@@ -1,4 +1,4 @@
-import useUserEntries from '../../context/useUserEntries';
+import useUserEntries from '../../context/UserEntriesContext/useUserEntries';
 import './Watchlist.css';
 import WatchlistTable from './WatchlistTable';
 

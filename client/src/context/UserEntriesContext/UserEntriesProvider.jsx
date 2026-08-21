@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import API_URL from "../config";
+import API_URL from "../../config"
 import UserEntriesContext from "./UserEntriesContext";
-import useAuth from "./useAuth";
-import useToast from "./useToast";
+import useAuth from "../AuthContext/useAuth";
+import useToast from "../ToastContext/useToast";
 
 const UserEntriesProvider = ({children}) => {
   const [userEntries, setUserEntries] = useState([]);
