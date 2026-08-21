@@ -14,7 +14,7 @@ const TvOverviewHero = function({data}){
   const genres = data.genres.slice(0, 3);
 
   const {openEditor} = useListEditor();
-  const {userEntries} = useUserEntries();
+  const {userEntries, handleStatusChange} = useUserEntries();
   const entry = userEntries.find((entry) => entry.tmdbId === data.id);
 
   const [status, setStatus] = useState(entry?.status || '');
@@ -26,10 +26,20 @@ const TvOverviewHero = function({data}){
   const handleSelectChange = (e) => {
     const value = e.target.value;
 
-    if (value === 'list-editor') {
+    if(value === 'list-editor'){
       openEditor(entry, data);
       e.target.value = '';
       return;
+    }
+    if
+    (
+      value === 'watching' ||
+      value === 'plan-to-watch' ||
+      value === 'watched'
+    ){
+      const movie = entry || data;
+      setStatus(e.target.value);
+      handleStatusChange(movie, value);
     }
   };
 
@@ -69,8 +79,8 @@ const TvOverviewHero = function({data}){
 
           <div className="hero-actions">
             <div className="status-select-wrapper">
-              <select className="status-select" value={status} onChange={(e) => setStatus(e.target.value)} onClick={handleSelectChange}>
-                <option value="">Add to List</option>
+              <select className="status-select" value={status} onChange={handleSelectChange}>
+                {status === '' && <option value="">Add to List</option>}
                 <option value="watching">Watching</option>
                 <option value="watched">Completed</option>
                 <option value="plan-to-watch">Planning</option>

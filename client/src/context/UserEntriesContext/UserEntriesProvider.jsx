@@ -29,7 +29,7 @@ const UserEntriesProvider = ({children}) => {
     fetchUserEntries();
   }, [user]);
 
-  const handleStatusChange = async (movie, clickedStatus) => {
+  const handleIconChange = async (movie, clickedStatus) => {
     if(!user){
       showToast('Please log in to save movies', 'error');
       return;
@@ -119,7 +119,98 @@ const UserEntriesProvider = ({children}) => {
     }
   };
 
-  const value = {userEntries, setUserEntries, handleStatusChange};
+  const handleStatusChange = async (movie, status) => {
+    if(!user){
+      showToast('Please log in to save movies', 'error');
+      return;
+    }
+
+    const tmdbId = movie.id || movie.tmdbId;
+    const title = movie.title || movie.name;
+    const mediaType = movie.media_type || (movie.title ? 'movie' : 'tv');
+    const year = mediaType === 'movie'
+      ? Number(movie.release_date?.slice(0, 4))
+      : Number(movie.first_air_date?.slice(0, 4));
+    
+      const toastStatus = {
+      'plan-to-watch': 'planning',
+      watched: 'completed',
+      paused: 'paused',
+      watching: 'watching',
+      dropped: 'dropped'
+    };
+
+    const previousEntries = userEntries;
+    const existingEntry = userEntries.find((entry) => entry.tmdbId === tmdbId);
+
+    if(existingEntry){
+      setUserEntries(prev =>
+        prev.map(entry =>
+          entry.tmdbId === tmdbId
+            ? { ...entry, status}
+            : entry
+        ));
+    }
+    else{
+      setUserEntries(prev => [
+        ...prev,
+        {
+          title,
+          tmdbId,
+          posterPath: movie.poster_path,
+          releaseDate: year,
+          mediaType: mediaType,
+          status
+        }
+      ])
+    }
+
+    try{
+      if(existingEntry){
+        const res = await fetch(`${API_URL}/entries`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          credentials: 'include',
+          body: JSON.stringify({
+            title: existingEntry.title,
+            tmdbId,
+            status: status
+          })
+        });
+
+        if(!res.ok){
+          throw new Error('Failed to save entry');
+        }
+        showToast(`${existingEntry.title} added to ${toastStatus[status]} list`, 'success');
+      }
+      else{
+        const res = await fetch(`${API_URL}/entries`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          credentials: 'include',
+          body: JSON.stringify({
+            title,
+            tmdbId,
+            posterPath: movie.poster_path,
+            releaseDate: year,
+            mediaType: mediaType,
+            status: status
+          })
+        });
+        if(!res.ok){
+          throw new Error('Failed to save entry');
+        }
+        showToast(`${title} added to ${toastStatus[status]} list`, 'success');
+      }
+      
+
+    }catch(err){
+      showToast(err.message, 'error');
+      setUserEntries(previousEntries);
+    }
+  };
+
+  const value = {userEntries, setUserEntries, handleIconChange, handleStatusChange};
   
   return(
     <UserEntriesContext.Provider value={value}>

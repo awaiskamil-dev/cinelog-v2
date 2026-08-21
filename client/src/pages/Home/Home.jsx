@@ -12,7 +12,7 @@ const Home = function(){
   const [formatSelect, setFormatSelect] = useState('Any');
   const [results, setResults] = useState([]);
 
-  const {userEntries, handleStatusChange} = useUserEntries();
+  const {userEntries, handleIconChange} = useUserEntries();
 
   const filtersActive = 
     searchInput !== '' ||
@@ -41,21 +41,21 @@ const Home = function(){
           <div className="results-section">
             {results.map((item) => {
               const myEntry = userEntries.find((entry) => entry.tmdbId === item.id);
-              return <MovieCard key={item.id} movie={item} status={myEntry?.status} onStatusChange={handleStatusChange}/>
+              return <MovieCard key={item.id} movie={item} status={myEntry?.status} onStatusChange={handleIconChange}/>
             })}
           </div>
         </div>
       )
       : (
         <div className="movie-grid">
-          <MovieRow title={'TRENDING NOW'} endpoint={'movies/trending'} userEntries={userEntries} onStatusChange={handleStatusChange}/>
-          <MovieRow title={'POPULAR MOVIES'} endpoint={'movies/popular'} userEntries={userEntries} onStatusChange={handleStatusChange}/>
-          <MovieRow title={'POPULAR TV SHOWS'} endpoint={'tv/popular'} userEntries={userEntries} onStatusChange={handleStatusChange}/>
-          <MovieRow title={'TOP RATED MOVIES'} endpoint={'movies/top-rated'} userEntries={userEntries} onStatusChange={handleStatusChange}/>
-          <MovieRow title={'TOP RATED TV SHOWS'} endpoint={'tv/top-rated'} userEntries={userEntries} onStatusChange={handleStatusChange}/>
-          <MovieRow title={'UPCOMING MOVIES'} endpoint={'movies/upcoming'} userEntries={userEntries} onStatusChange={handleStatusChange}/>
-          <MovieRow title={'ACTION MOVIES'} endpoint={'movies/action'} userEntries={userEntries} onStatusChange={handleStatusChange}/>
-          <MovieRow title={'ANIMATION'} endpoint={'movies/animation'} userEntries={userEntries} onStatusChange={handleStatusChange}/>
+          <MovieRow title={'TRENDING NOW'} endpoint={'movies/trending'} userEntries={userEntries} onStatusChange={handleIconChange}/>
+          <MovieRow title={'POPULAR MOVIES'} endpoint={'movies/popular'} userEntries={userEntries} onStatusChange={handleIconChange}/>
+          <MovieRow title={'POPULAR TV SHOWS'} endpoint={'tv/popular'} userEntries={userEntries} onStatusChange={handleIconChange}/>
+          <MovieRow title={'TOP RATED MOVIES'} endpoint={'movies/top-rated'} userEntries={userEntries} onStatusChange={handleIconChange}/>
+          <MovieRow title={'TOP RATED TV SHOWS'} endpoint={'tv/top-rated'} userEntries={userEntries} onStatusChange={handleIconChange}/>
+          <MovieRow title={'UPCOMING MOVIES'} endpoint={'movies/upcoming'} userEntries={userEntries} onStatusChange={handleIconChange}/>
+          <MovieRow title={'ACTION MOVIES'} endpoint={'movies/action'} userEntries={userEntries} onStatusChange={handleIconChange}/>
+          <MovieRow title={'ANIMATION'} endpoint={'movies/animation'} userEntries={userEntries} onStatusChange={handleIconChange}/>
         </div>
       )
       }
