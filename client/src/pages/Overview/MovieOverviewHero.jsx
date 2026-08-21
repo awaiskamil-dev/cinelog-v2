@@ -21,7 +21,7 @@ const MovieOverviewHero = function({data}){
     const value = e.target.value;
 
     if (value === 'list-editor') {
-      openEditor(data, entry);
+      openEditor(entry, data);
       e.target.value = '';
       return;
     }

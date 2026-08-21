@@ -6,7 +6,7 @@ const ListEditorProvider = ({children}) => {
   const [currentMovie, setCurrentMovie] = useState(null);
   const [currentEntry, setCurrentEntry] = useState(null);
 
-  const openEditor = (movie, existingEntry = null) => {
+  const openEditor = (existingEntry = null, movie) => {
     setCurrentMovie(movie);
     setCurrentEntry(existingEntry);
     setIsOpen(true);

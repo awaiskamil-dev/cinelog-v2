@@ -28,7 +28,7 @@ const EntrySchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['plan-to-watch', 'watching', 'watched', 'dropped'],
+    enum: ['plan-to-watch', 'watching', 'watched', 'dropped', 'paused'],
     default: 'plan-to-watch',
   },
   rating: {

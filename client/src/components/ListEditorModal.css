@@ -64,9 +64,21 @@
 }
 
 .editor-field {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 6px;
+}
+
+.editor-field select{
+  cursor: pointer;
+}
+
+.editor-field .fa-angle-down{
+  position: absolute;
+  top: 35px;
+  right: 12px;
+  pointer-events: none;
 }
 
 .editor-field--full {

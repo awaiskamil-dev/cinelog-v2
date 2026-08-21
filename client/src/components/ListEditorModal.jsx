@@ -24,9 +24,9 @@ function ListEditorModal() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const year = currentMovie.media_type === 'movie'
+    const year = currentMovie? (currentMovie.media_type === 'movie'
       ? Number(currentMovie.release_date?.slice(0, 4))
-      : Number(currentMovie.first_air_date?.slice(0, 4));
+      : Number(currentMovie.first_air_date?.slice(0, 4))) : '';
     
     const previousEntries = userEntries;
 
@@ -58,6 +58,7 @@ function ListEditorModal() {
         watched: 'completed',
         watching: 'watching',
         dropped: 'dropped',
+        paused: 'paused'
       };
 
       if(currentEntry){
@@ -162,8 +163,10 @@ function ListEditorModal() {
               <option value="plan-to-watch">Plan to Watch</option>
               <option value="watching">Watching</option>
               <option value="watched">Completed</option>
+              <option value="paused">Paused</option>
               <option value="dropped">Dropped</option>
             </select>
+            <i className="fa-solid fa-angle-down"/>
           </div>
 
           <div className="editor-field">
@@ -172,7 +175,7 @@ function ListEditorModal() {
               type="number"
               min="0"
               max="10"
-              step="0.1"
+              step="0.5"
               value={rating}
               onChange={(e) => setRating(Number(e.target.value))}
             />

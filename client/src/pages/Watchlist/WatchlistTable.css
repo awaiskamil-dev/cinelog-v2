@@ -75,13 +75,43 @@ tbody tr:hover .poster-popup{
 }
 
 .poster-thumb{
-  width: 40px;
-  height: 40px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 4px;
-  flex-shrink: 0;
+  display: block;
 }
 
 .entry-title{
   cursor: pointer;
+}
+
+.poster-container {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  flex-shrink: none;
+  cursor: pointer;
+}
+
+.fa-ellipsis{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5); 
+  color: white;
+  font-size: 20px;
+  border-radius: 4px; 
+  opacity: 0;
+  pointer-events: none; 
+  transition: opacity 0.2s ease-in-out;
+}
+
+tbody tr:hover .fa-ellipsis{
+  opacity: 1;
 }

@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router';
 import './WatchlistTable.css';
+import useListEditor from '../../context/ListEditorContext/useListEditor';
 
 const WatchlistTable = function({title, entries}){
   const navigate = useNavigate();
+  const {openEditor} = useListEditor();
   
   return(
     <div className="watchlist-table-section">
@@ -27,7 +29,11 @@ const WatchlistTable = function({title, entries}){
                     <div className="poster-popup">
                       <img src={`https://image.tmdb.org/t/p/w500${entry.posterPath}`} alt="Movie Poster Popup"/>
                     </div>
-                    <img className="poster-thumb" src={`https://image.tmdb.org/t/p/w500${entry.posterPath}`} alt="Movie Poster"/>
+                    <div className='poster-container'>
+                       <img className="poster-thumb" src={`https://image.tmdb.org/t/p/w500${entry.posterPath}`} 
+                        alt="Movie Poster" onClick={() => openEditor(entry)}/>
+                        <i className="fa-solid fa-ellipsis"></i>
+                    </div>
                     <span className='entry-title' onClick={() => navigate(`/${entry.mediaType}/${entry.tmdbId}`)}>{entry.title}</span>
                   </td>
                   <td className="col-stats">{rating}</td>

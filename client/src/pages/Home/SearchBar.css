@@ -21,6 +21,7 @@
   position: absolute;
   top: 40px;
   right: 12px;
+  pointer-events: none;
 }
 
 .search-input, .genre-select, .year-select, .format-select{
@@ -32,6 +33,10 @@
   border-radius: 6px;
   font-size: 13px;
   font-weight: 600;
+}
+
+.genre-select, .year-select, .format-select{
+  cursor: pointer;
 }
 
 .search-input{
