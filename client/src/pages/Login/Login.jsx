@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './Login.css';
-import { Link, useNavigate } from 'react-router';
+import { Link, useNavigate, useLocation } from 'react-router';
 import API_URL from '../../config';
 import useAuth from '../../context/AuthContext/useAuth';
 
@@ -10,6 +10,8 @@ const Login = function(){
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from || '/';
   const {setUser} = useAuth();
 
   const handleChange = (e) => {
@@ -36,7 +38,7 @@ const Login = function(){
       }
       
       setUser(data.user);
-      navigate('/');
+      navigate(from);
     }catch(err){
       setError(err.message);
     }

@@ -13,6 +13,7 @@ import MovieOverview from './pages/Overview/MovieOverview';
 import TvOverview from './pages/Overview/TvOverview';
 import ListEditorModal from './components/ListEditorModal';
 import useListEditor from './context/ListEditorContext/useListEditor';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   const {isOpen} = useListEditor();
@@ -30,7 +31,11 @@ function App() {
         <Route path='/user/verify-email' element={<VerifyToken/>}/>
         <Route path='/forgot' element={<ForgotPassword/>}/>
         <Route path='/user/reset-password' element={<ResetPassword/>}/>
-        <Route path='/watchlist' element={<Watchlist/>}/>
+        <Route path='/watchlist' element={
+          <ProtectedRoute>
+            <Watchlist/>
+          </ProtectedRoute>
+        }/>
         <Route path='/movie/:id' element={<MovieOverview/>}/>
         <Route path='/tv/:id' element={<TvOverview/>}/>
       </Routes>

@@ -86,7 +86,7 @@ function Navbar(){
       )
       :(
         <>
-          <Link to="/login" className='nav-login'>
+          <Link to="/login" className='nav-login' state={{from: location.pathname}}>
             Login
           </Link>
           <Link to="/register" className='nav-signup'>
