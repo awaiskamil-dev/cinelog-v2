@@ -36,6 +36,10 @@ const EntrySchema = new mongoose.Schema({
     min: 1,
     max: 10,
   },
+  isFavorite: {
+    type: Boolean,
+    default: false,
+  },
   review: {
     type: String,
     maxLength: 2000,

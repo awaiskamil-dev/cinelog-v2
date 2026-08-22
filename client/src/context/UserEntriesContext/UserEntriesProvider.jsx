@@ -210,7 +210,62 @@ const UserEntriesProvider = ({children}) => {
     }
   };
 
-  const value = {userEntries, setUserEntries, handleIconChange, handleStatusChange};
+  const handleFavoriteButton = async (movie, isFavorite) => {
+    if(!user){
+      showToast('Please log in to save movies', 'error');
+      return;
+    }
+    if(!movie){
+      showToast('Please save the movie to add it to favorites', 'error');
+      return;
+    }
+
+    const previousEntries = userEntries;
+
+    setUserEntries(prev =>
+      prev.map(entry =>
+        entry.tmdbId === movie.tmdbId
+          ? { ...entry, isFavorite}
+          : entry
+      ));
+    
+    try{
+      const res = await fetch(`${API_URL}/entries`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        credentials: 'include',
+        body: JSON.stringify({
+          tmdbId: movie.tmdbId,
+          title: movie.title,
+          isFavorite
+        })
+      });
+      if(isFavorite){
+        if(!res.ok){
+          throw new Error('Failed to favorite entry');
+        }
+        showToast(`${movie.title} added to favorites`, 'success');
+      }
+      else{
+        if(!res.ok){
+          throw new Error('Failed to remove favorite');
+        }
+        showToast(`${movie.title} removed from favorites`, 'success');
+      }
+      
+    }catch(err){
+      showToast(err.message, 'error');
+      setUserEntries(previousEntries);
+    }
+  };
+
+  const value = {
+    userEntries,
+    setUserEntries,
+    handleIconChange,
+    handleStatusChange,
+    handleFavoriteButton
+  };
   
   return(
     <UserEntriesContext.Provider value={value}>

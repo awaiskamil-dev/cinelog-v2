@@ -8,13 +8,15 @@ const MovieOverviewHero = function({data}){
   const genres = data.genres.slice(0, 3);
   
   const {openEditor} = useListEditor();
-  const {userEntries, handleStatusChange} = useUserEntries();
+  const {userEntries, handleStatusChange, handleFavoriteButton} = useUserEntries();
   const entry = userEntries.find((entry) => entry.tmdbId === data.id);
 
   const [status, setStatus] = useState(entry?.status || '');
+  const [isFavorite, setIsFavorite] = useState(entry?.isFavorite || false);
   
   useEffect(() => {
     setStatus(entry?.status || '');
+    setIsFavorite(entry?.isFavorite || false);
   }, [entry]);
 
   const handleSelectChange = (e) => {
@@ -36,6 +38,13 @@ const MovieOverviewHero = function({data}){
       handleStatusChange(movie, value);
     }
   };
+
+  const handleFavoriteChange = async () => {
+    const newIsFavorite = !isFavorite;
+    
+    handleFavoriteButton(entry, newIsFavorite);
+  };
+
   return(
     <section className="overview-hero">
       <div className="hero-backdrop">
@@ -84,8 +93,11 @@ const MovieOverviewHero = function({data}){
               <i className="fa-solid fa-angle-down status-select__chevron"></i>
             </div>
 
-            <button className="favorite-btn" aria-label="Add to favorites">
-              <i className="fa-regular fa-heart"></i>
+            <button className="favorite-btn" aria-label="Add to favorites" onClick={handleFavoriteChange}>
+              {isFavorite? 
+                (<i className="fa-solid fa-heart"></i>)
+                :(<i className="fa-regular fa-heart"></i>)
+              }
             </button>
           </div>
         </div>

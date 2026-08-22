@@ -40,9 +40,9 @@ const TvSidebar = function({data}){
         <span className="stat-value">{data.number_of_episodes}</span>
       </div>
       {episodeRuntime && (
-        <div className="sidebar-item">
-          <span className="sidebar-label">EPISODE RUNTIME</span>
-          <span>{episodeRuntime} minutes</span>
+        <div className="stat-block">
+          <span className="stat-label">Episode Runtime</span>
+          <span className="stat-value">{episodeRuntime} minutes</span>
         </div>
       )}
       <div className="stat-block">

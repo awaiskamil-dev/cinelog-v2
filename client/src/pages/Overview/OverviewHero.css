@@ -158,6 +158,10 @@
   border-color: #e84c6f;
 }
 
+.favorite-btn .fa-solid{
+  color: #e84c6f;
+}
+
 @media (max-width: 900px){
   .hero-content{
     padding: 0 24px;

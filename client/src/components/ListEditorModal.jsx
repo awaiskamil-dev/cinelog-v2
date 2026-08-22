@@ -47,7 +47,8 @@ function ListEditorModal() {
           posterPath: currentMovie.poster_path,
           releaseDate: year,
           mediaType: currentMovie.media_type,
-          status: status
+          status: status,
+          rating,
         }
       ]);
     }
@@ -97,7 +98,8 @@ function ListEditorModal() {
             posterPath: currentMovie.poster_path,
             releaseDate: year,
             mediaType: currentMovie.media_type,
-            status: status
+            status: status,
+            rating,
           })
         });
         if (!res.ok) {
