@@ -65,27 +65,32 @@ const Reviews = function({data}){
           )}
         </div>
         
-        {visibleReviews.map((review) => {
-          const recommendation = getRecommendation(review.author_details.rating);
-          return (
-            <div className="review-card" key={review.id}>
-              <div className="review-card__header">
-                <span className="review-author">{review.author}</span>
-                {review.author_details.rating !== null && 
-                  <span className={`review-verdict review-verdict--${recommendation}`}>{recommendationMapping[recommendation]}</span>
-                }
-              </div>
-              <p className="review-text">
-                {truncate(review.content)}
-                {review.content.length > 220 && (
-                  <span className="review-readmore" onClick={() => setSelectedReview(review.content)}>
-                    Read more
-                  </span>
-                )}
-              </p>
-            </div>
-          )
-        })}
+        {reviews.length === 0? 
+          (<p className="reviews-empty">No reviews yet for this title.</p>)
+          :(
+            visibleReviews.map((review) => {
+              const recommendation = getRecommendation(review.author_details.rating);
+              return (
+                <div className="review-card" key={review.id}>
+                  <div className="review-card__header">
+                    <span className="review-author">{review.author}</span>
+                    {review.author_details.rating !== null && 
+                      <span className={`review-verdict review-verdict--${recommendation}`}>{recommendationMapping[recommendation]}</span>
+                    }
+                  </div>
+                  <p className="review-text">
+                    {truncate(review.content)}
+                    {review.content.length > 220 && (
+                      <span className="review-readmore" onClick={() => setSelectedReview(review.content)}>
+                        Read more
+                      </span>
+                    )}
+                  </p>
+                </div>
+              )
+            })
+          )}
+        
       </section>
       {selectedReview && (
         <div className="review-modal-overlay" onClick={() => setSelectedReview(null)}>

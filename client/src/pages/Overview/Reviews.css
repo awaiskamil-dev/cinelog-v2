@@ -152,3 +152,9 @@
 .review-readmore:hover {
   text-decoration: underline;
 }
+
+.reviews-empty {
+  color: var(--text-dim);
+  font-size: 13px;
+  font-style: italic;
+}
