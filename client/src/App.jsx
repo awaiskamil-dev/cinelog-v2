@@ -15,12 +15,14 @@ import ListEditorModal from './components/ListEditorModal';
 import useListEditor from './context/ListEditorContext/useListEditor';
 import ProtectedRoute from './components/ProtectedRoute';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   const {isOpen} = useListEditor();
   
   return(
     <BrowserRouter>
+      <ScrollToTop/>
       <Navbar/>
       <Toast/>
       {isOpen && <ListEditorModal/>}
