@@ -48,45 +48,48 @@ const Login = function(){
   };
 
   return (
-    <main className="auth-page">
-      <section className="auth-card">
-        <h2>Login</h2>
+    <>
+      <title>Log in · Cinelog</title>
+      <main className="auth-page">
+        <section className="auth-card">
+          <h2>Login</h2>
 
-        {error && <p className="auth-error">{error}</p>}
+          {error && <p className="auth-error">{error}</p>}
 
-        <form className="auth-form" noValidate onSubmit={handleSubmit}>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            autoComplete="email"
-            required
-            value={formData.email}
-            onChange={handleChange}
-          />
+          <form className="auth-form" noValidate onSubmit={handleSubmit}>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              autoComplete="email"
+              required
+              value={formData.email}
+              onChange={handleChange}
+            />
 
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            autoComplete="current-password"
-            required
-            value={formData.password}
-            onChange={handleChange}
-          />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              autoComplete="current-password"
+              required
+              value={formData.password}
+              onChange={handleChange}
+            />
 
-          <button type="submit" className="auth-btn" disabled={isLoading}>
-            {isLoading ? 'Logging in…' : 'Login'}
-          </button>
+            <button type="submit" className="auth-btn" disabled={isLoading}>
+              {isLoading ? 'Logging in…' : 'Login'}
+            </button>
 
-          <Link to="/forgot" className="auth-forgot">Forgot password?</Link>
-        </form>
+            <Link to="/forgot" className="auth-forgot">Forgot password?</Link>
+          </form>
 
-        <p className="auth-switch">
-          Not registered? <Link to="/register">Create an account</Link>
-        </p>
-      </section>
-    </main>
+          <p className="auth-switch">
+            Not registered? <Link to="/register">Create an account</Link>
+          </p>
+        </section>
+      </main>
+    </>
   );
 }
 

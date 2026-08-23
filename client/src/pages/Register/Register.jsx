@@ -57,63 +57,66 @@ const Register = function(){
   };
 
   return (
-    <main className="auth-page">
-      <section className="auth-card">
-        <h2>Create Account</h2>
-        
-        {error && <p className="auth-error">{error}</p>}
+    <>
+      <title>Sign up · Cinelog</title>
+      <main className="auth-page">
+        <section className="auth-card">
+          <h2>Create Account</h2>
+          
+          {error && <p className="auth-error">{error}</p>}
 
-        <form className="auth-form" noValidate onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            autoComplete="name"
-            required
-            onChange={handleChange}
-            value={formData.name}
-          />
-  
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            autoComplete="email"
-            required
-            onChange={handleChange}
-            value={formData.email}
-          />
-  
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            autoComplete="new-password"
-            required
-            onChange={handleChange}
-            value={formData.password}
-          />
-  
-          <input
-            type="password"
-            name="confirmPassword"
-            placeholder="Confirm password"
-            autoComplete="new-password"
-            required
-            onChange={handleChange}
-            value={formData.confirmPassword}
-          />
-  
-          <button type="submit" className="auth-btn" disabled={isLoading}>
-            {isLoading ? 'Signing up…' : 'Sign Up'}
-          </button>
-        </form>
-  
-        <p className="auth-switch">
-          Already have an account? <Link to="/login">Login</Link>
-        </p>
-      </section>
-    </main>
+          <form className="auth-form" noValidate onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              autoComplete="name"
+              required
+              onChange={handleChange}
+              value={formData.name}
+            />
+    
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              autoComplete="email"
+              required
+              onChange={handleChange}
+              value={formData.email}
+            />
+    
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              autoComplete="new-password"
+              required
+              onChange={handleChange}
+              value={formData.password}
+            />
+    
+            <input
+              type="password"
+              name="confirmPassword"
+              placeholder="Confirm password"
+              autoComplete="new-password"
+              required
+              onChange={handleChange}
+              value={formData.confirmPassword}
+            />
+    
+            <button type="submit" className="auth-btn" disabled={isLoading}>
+              {isLoading ? 'Signing up…' : 'Sign Up'}
+            </button>
+          </form>
+    
+          <p className="auth-switch">
+            Already have an account? <Link to="/login">Login</Link>
+          </p>
+        </section>
+      </main>
+    </>
   );
 };
 

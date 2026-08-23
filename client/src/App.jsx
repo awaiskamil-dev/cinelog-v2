@@ -14,6 +14,7 @@ import TvOverview from './pages/Overview/TvOverview';
 import ListEditorModal from './components/ListEditorModal';
 import useListEditor from './context/ListEditorContext/useListEditor';
 import ProtectedRoute from './components/ProtectedRoute';
+import Footer from './components/Footer';
 
 function App() {
   const {isOpen} = useListEditor();
@@ -39,6 +40,7 @@ function App() {
         <Route path='/movie/:id' element={<MovieOverview/>}/>
         <Route path='/tv/:id' element={<TvOverview/>}/>
       </Routes>
+      <Footer/>
     </BrowserRouter>
   );
 };

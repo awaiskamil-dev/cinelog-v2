@@ -40,23 +40,30 @@ const VerifyToken = () => {
   }, [token, email]);
 
   return (
-    <main className="auth-page">
-      <section className="auth-card">
-        <h2>
-          {status === 'verifying' && 'Verifying…'}
-          {status === 'success' && 'Verified!'}
-          {status === 'error' && 'Verification failed'}
-        </h2>
+    <>
+      <title>
+        {status === 'verifying' && 'Verifying · Cinelog'}
+        {status === 'success' && 'Verified · Cinelog'}
+        {status === 'error' && 'Verification failed · Cinelog'}
+      </title>
+      <main className="auth-page">
+        <section className="auth-card">
+          <h2>
+            {status === 'verifying' && 'Verifying…'}
+            {status === 'success' && 'Verified!'}
+            {status === 'error' && 'Verification failed'}
+          </h2>
 
-        <p className="auth-message">{message}</p>
+          <p className="auth-message">{message}</p>
 
-        {status !== 'verifying' && (
-          <p className="auth-switch">
-            <Link to="/login">Go to login</Link>
-          </p>
-        )}
-      </section>
-    </main>
+          {status !== 'verifying' && (
+            <p className="auth-switch">
+              <Link to="/login">Go to login</Link>
+            </p>
+          )}
+        </section>
+      </main>
+    </>
   );
 };
 

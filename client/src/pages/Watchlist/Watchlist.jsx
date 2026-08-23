@@ -12,13 +12,16 @@ const Watchlist = function(){
   const paused = userEntries.filter((entry) => entry.status === 'paused');
 
   return (
-    <div className='watchlist'>
-      {watching.length > 0 && <WatchlistTable title={'Watching'} entries={watching}/>}
-      {completed.length > 0 && <WatchlistTable title={'Completed'} entries={completed}/>}
-      {paused.length > 0 && <WatchlistTable title={'Paused'} entries={paused}/>}
-      {dropped.length > 0 && <WatchlistTable title={'Dropped'} entries={dropped}/>}
-      {planning.length > 0 && <WatchlistTable title={'Planning'} entries={planning}/>}
-    </div>
+    <>
+      <title>Watchlist · Cinelog</title>
+      <div className='watchlist'>
+        {watching.length > 0 && <WatchlistTable title={'Watching'} entries={watching}/>}
+        {completed.length > 0 && <WatchlistTable title={'Completed'} entries={completed}/>}
+        {paused.length > 0 && <WatchlistTable title={'Paused'} entries={paused}/>}
+        {dropped.length > 0 && <WatchlistTable title={'Dropped'} entries={dropped}/>}
+        {planning.length > 0 && <WatchlistTable title={'Planning'} entries={planning}/>}
+      </div>
+    </>
   );
 };
 

@@ -8,19 +8,22 @@ import Reviews from './Reviews';
 
 const Overview = function({type, data}){
   return(
-    <main className="overview-page">
-      <OverviewHero type={type} data={data}/>
-      <OverviewSummary data={data}/>
-  
-      <div className="overview-body">
-        <OverviewSidebar type={type} data={data}/>
-  
-        <div className="overview-main">
-          <Cast data={data}/>
-          <Reviews data={data}/>
+    <>
+      <title>{`${type === 'movie'? (data.title) : (data.name)} · Cinelog`}</title>
+      <main className="overview-page">
+        <OverviewHero type={type} data={data}/>
+        <OverviewSummary data={data}/>
+    
+        <div className="overview-body">
+          <OverviewSidebar type={type} data={data}/>
+    
+          <div className="overview-main">
+            <Cast data={data}/>
+            <Reviews data={data}/>
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 };
 
