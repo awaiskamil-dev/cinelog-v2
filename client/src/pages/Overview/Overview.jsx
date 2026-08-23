@@ -17,7 +17,7 @@ const Overview = function({type, data}){
   
         <div className="overview-main">
           <Cast data={data}/>
-          <Reviews/>
+          <Reviews data={data}/>
         </div>
       </div>
     </main>

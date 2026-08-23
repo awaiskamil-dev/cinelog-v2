@@ -33,7 +33,7 @@ const getTopRated = async (req, res) => {
 const getTvDetails = async (req, res) => {
   const {id} = req.params;
 
-  const response = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.TMDB_API_KEY}&append_to_response=credits`)
+  const response = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.TMDB_API_KEY}&append_to_response=credits,reviews`)
   const data = await response.json();
   data.media_type = 'tv';
 

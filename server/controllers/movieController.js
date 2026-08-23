@@ -44,12 +44,13 @@ const getTopRated = async (req, res) => {
 };
 
 const getUpcoming = async (req, res) => {
+  const todaysDate = new Date(Date.now());
   const cached = getCached('upcoming-movies');
   if(cached){
     return res.status(StatusCodes.OK).json(cached);
   }
 
-  const response = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.TMDB_API_KEY}`);
+  const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&region=US&sort_by=popularity.desc&primary_release_date.gte=${todaysDate}`);
   const data = await response.json();
   appendMediaType({results: data.results}, 'movie');
   setCached('upcoming-movies', data);
@@ -145,7 +146,7 @@ const getAnimation = async (req, res) => {
 const getMovieDetails = async (req, res) => {
   const {id} = req.params;
 
-  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.TMDB_API_KEY}&append_to_response=credits`)
+  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.TMDB_API_KEY}&append_to_response=credits,reviews`)
   const data = await response.json();
   data.media_type = 'movie'; 
 
