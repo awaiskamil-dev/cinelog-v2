@@ -21,7 +21,7 @@ const Home = function(){
     formatSelect !== 'Any';
     
   return (
-    <>
+    <div className="page-container">
       <SearchBar
         searchInput={searchInput}
         setSearchInput={setSearchInput}
@@ -59,7 +59,7 @@ const Home = function(){
         </div>
       )
       }
-    </>
+    </div>
   );
 };
 

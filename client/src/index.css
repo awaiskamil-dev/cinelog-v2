@@ -11,30 +11,8 @@
 
   --font-display: "Bebas Neue", "Arial Narrow", sans-serif;
   --font-body: "Inter", system-ui, sans-serif;
-}
-#desktop-only {
-    display: none;
-}
-@media (max-width: 900px) {
-    #desktop-only {
-        position: fixed;
-        inset: 0;
-        background: #111;
-        color: white;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        text-align: center;
-        padding: 2rem;
-        z-index: 999999;
-    }
-
-    body {
-        overflow: hidden;
-    }
+  
+  --page-padding: 150px;
 }
 * {
   margin: 0;
@@ -66,4 +44,22 @@ select{
 }
 .fa-solid{
   color: #C9B99A;
+}
+
+@media (max-width: 1024px){
+  :root {
+     --page-padding: clamp(40px, calc(15.625vw - 80px), 80px);
+  }
+}
+
+@media (max-width: 768px){
+  :root {
+    --page-padding: clamp(20px, calc(6.944vw - 13.33px), 40px);
+  }
+}
+
+@media (max-width: 480px){
+  :root {
+    --page-padding: clamp(10px, calc(6.25vw - 10px), 20px);
+  }
 }

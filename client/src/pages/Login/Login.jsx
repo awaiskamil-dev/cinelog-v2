@@ -38,7 +38,19 @@ const Login = function(){
       }
       
       setUser(data.user);
-      navigate(from);
+      if
+      (
+        from === '/register' ||
+        from == '/verify-email' ||
+        from == '/user/verify-email' ||
+        from === '/forgot' ||
+        from === '/user/reset-password'
+      ){
+        navigate('/');
+      }
+      else{
+        navigate(from);
+      }
     }catch(err){
       setError(err.message);
     }

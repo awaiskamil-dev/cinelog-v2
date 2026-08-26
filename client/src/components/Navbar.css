@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
 }
-nav{
+.nav-container{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -11,6 +11,7 @@ nav{
   align-items: center;
   width: 100%;
   z-index: 10;
+  padding-inline: var(--page-padding);
 }
 .navbar--transparent {
   position: absolute;
@@ -24,15 +25,14 @@ nav{
 .nav-left-section{
   display: flex;
   align-items: center;
-  margin-left: 150px;
 }
 .nav-right-section{
-  margin-right: 150px;
   display: flex;
   align-items: center;
 }
 .logo{
   height: 100px;
+  margin-left: -15px;
 }
 .logo-name{
   font-family: Bebas Neue;
@@ -125,4 +125,38 @@ nav{
 .nav-dropdown-item:hover,
 .nav-dropdown-item:hover i{
   color: #F5A623;
+}
+
+.dropdown-sm-screen{
+  display: none;
+}
+
+@media (max-width: 768px){
+  .nav-dropdown{
+    right: 2px;
+    left: auto;
+    transform: none;
+  }
+}
+
+@media (max-width: 480px){
+  .logo{
+    height: 80px;
+  }
+  .logo-name{
+    font-size: 22px;
+  }
+  .nav-container{
+    height: 60px;
+  }
+  .home-link, .watchlist-link{
+    display: none;
+  }
+  .nav-signup{
+    padding: 4px 10px;
+    font-size: 12px;
+  }
+  .dropdown-sm-screen{
+    display: flex;
+  }
 }

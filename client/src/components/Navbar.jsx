@@ -42,60 +42,68 @@ function Navbar(){
   };
 
   return (
-  <nav className={`${isOverviewPage? 'navbar--transparent' : ''}`}>
-    <div className="nav-left-section">
-      <Link to="/">
-        <img className="logo" src={logo}/>
-        <span className="logo-name">Cinelog</span>
-      </Link>
-    </div>
-    <div className="nav-right-section">
-      {isLoading? null : (
-        <Link className="home-link" to="/">
-          Home
+  <nav>
+    <div className={`nav-container ${isOverviewPage? 'navbar--transparent' : ''}`}>
+      <div className="nav-left-section">
+        <Link to="/">
+          <img className="logo" src={logo}/>
+          <span className="logo-name">Cinelog</span>
         </Link>
-      )}
-      {isLoading? null : (user? 
-      ( 
-        <>
-          <Link to="/watchlist" className='watchlist-link'>
-            Watchlist
+      </div>
+      <div className="nav-right-section">
+        {isLoading? null : (
+          <Link className="home-link" to="/">
+            Home
           </Link>
-          <div 
-            className="nav-avatar-wrapper"
-            onMouseEnter={() => setIsOpen(true)}
-            onMouseLeave={() => setIsOpen(false)}
-          >
-            <div className="nav-avatar">
-              <img src={defaultAvatar} alt="User avatar" />
-              <i className="fa-solid fa-angle-down"></i>
-            </div>
+        )}
+        {isLoading? null : (user? 
+        ( 
+          <>
+            <Link to="/watchlist" className='watchlist-link'>
+              Watchlist
+            </Link>
+            <div 
+              className="nav-avatar-wrapper"
+              onMouseEnter={() => setIsOpen(true)}
+              onMouseLeave={() => setIsOpen(false)}
+            >
+              <div className="nav-avatar">
+                <img src={defaultAvatar} alt="User avatar" />
+                <i className="fa-solid fa-angle-down"></i>
+              </div>
 
-            {isOpen && (
-              <div className="nav-dropdown">
-                <div className='nav-dropdown-inner'>
-                  <div className='nav-dropdown-item' onClick={handleLogout}>
-                    <i className="fa-solid fa-right-from-bracket"></i>
-                    <span>Logout</span>
+              {isOpen && (
+                <div className="nav-dropdown">
+                  <div className='nav-dropdown-inner'>
+                    <div className='nav-dropdown-item dropdown-sm-screen' onClick={() => navigate('/')}>
+                      <i class="fa-solid fa-house"></i>
+                      <span>Home</span>
+                    </div>
+                    <div className='nav-dropdown-item dropdown-sm-screen' onClick={() => navigate('/watchlist')}>
+                      <i class="fa-solid fa-clapperboard"></i>
+                      <span>Watchlist</span>
+                    </div>
+                    <div className='nav-dropdown-item' onClick={handleLogout}>
+                      <i className="fa-solid fa-right-from-bracket"></i>
+                      <span>Logout</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
-          </div>
-        </>
-      )
-      :(
-        <>
-          <Link to="/login" className='nav-login' state={{from: location.pathname}}>
-            Login
-          </Link>
-          <Link to="/register" className='nav-signup'>
-            Sign Up
-          </Link>
-        </>
-      ))}
-     
-      
+              )}
+            </div>
+          </>
+        )
+        :(
+          <>
+            <Link to="/login" className='nav-login' state={{from: location.pathname}}>
+              Login
+            </Link>
+            <Link to="/register" className='nav-signup'>
+              Sign Up
+            </Link>
+          </>
+        ))}
+      </div>
     </div>
   </nav>
   );
