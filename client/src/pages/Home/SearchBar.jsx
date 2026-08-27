@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './SearchBar.css';
 import API_URL from '../../config';
 
@@ -9,6 +9,8 @@ function SearchBar({
   formatSelect, setFormatSelect,
   setResults,
 }){
+  const [filtersOpen, setFiltersOpen] = useState(false);
+
   const currentYear = new Date().getFullYear();
   const startYear = 1970;
   const endYear = currentYear + 2;
@@ -70,7 +72,13 @@ function SearchBar({
         )}
       </div>
 
-      <div className="genre-group">
+      <div className='filters-btn-container' onClick={() => setFiltersOpen(!filtersOpen)}>
+        <button className='filters-btn'>
+          <i className="fa-solid fa-sliders"></i>
+        </button>
+      </div>
+
+      <div className={`genre-group ${filtersOpen? 'filters active' : 'filters'}`}>
         <label>Genre</label>
         <select className="genre-select"
           value={genreSelect}
@@ -92,7 +100,7 @@ function SearchBar({
         }
       </div>      
       
-      <div className="year-group">
+      <div className={`year-group ${filtersOpen? 'filters active' : 'filters'}`}>
         <label>Year</label>
         <select className="year-select"
           value={yearSelect}
@@ -113,7 +121,7 @@ function SearchBar({
         }
       </div>
 
-      <div className="format-group">
+      <div className={`format-group ${filtersOpen? 'filters active' : 'filters'}`}>
         <label>Format</label>
         <select className="format-select"
           value={formatSelect}

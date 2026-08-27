@@ -60,3 +60,41 @@
   right: 12px;
   cursor: pointer;
 }
+
+.filters-btn{
+  padding: 4px;
+  height: 38px;
+  width: 38px;
+  background-color: #141414;
+  border-style: none;
+  border-radius: 6px;
+  margin-top: 29px;
+  cursor: pointer;
+}
+
+.fa-sliders{
+  font-size: 18px;
+}
+
+.filters-btn:hover .fa-sliders{
+  color: #F5A623;
+}
+
+.filters-btn-container{
+  display: none;
+}
+
+@media (max-width: 480px){
+  .filters-btn-container{
+    display: flex;
+  }
+  .genre-group, .year-group, .format-group{
+    display: none;
+  }
+  .filters{
+    display: none;
+  }
+  .filters.active{
+    display: flex;
+  }
+}

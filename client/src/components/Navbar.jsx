@@ -76,11 +76,11 @@ function Navbar(){
                 <div className="nav-dropdown">
                   <div className='nav-dropdown-inner'>
                     <div className='nav-dropdown-item dropdown-sm-screen' onClick={() => navigate('/')}>
-                      <i class="fa-solid fa-house"></i>
+                      <i className="fa-solid fa-house"></i>
                       <span>Home</span>
                     </div>
                     <div className='nav-dropdown-item dropdown-sm-screen' onClick={() => navigate('/watchlist')}>
-                      <i class="fa-solid fa-clapperboard"></i>
+                      <i className="fa-solid fa-clapperboard"></i>
                       <span>Watchlist</span>
                     </div>
                     <div className='nav-dropdown-item' onClick={handleLogout}>
