@@ -37,13 +37,8 @@ const apiLimiter = rateLimiter({
 
 app.set('trust proxy', 1);
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://cinelog-tracker.netlify.app"
-];
-
 app.use(cors({
-  origin: allowedOrigins,
+  origin: 'https://cinelog-tracker.netlify.app',
   credentials: true
 }));
 
