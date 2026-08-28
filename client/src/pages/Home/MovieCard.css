@@ -39,7 +39,6 @@
 }
 .movie-card:hover .card-overlay, .movie-card:hover .movie-name{
   color: #F5A623;
-  opacity: 1;
 }
 .card-overlay i{
   margin-bottom: 18px;
@@ -47,4 +46,22 @@
 }
 .fa-bookmark.active, .fa-eye.active{
   color: #F5A623;
+}
+
+@media (hover: hover) {
+  .movie-card:hover .card-overlay {
+      opacity: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .movie-poster,
+  .card-overlay {
+    width: 150px;
+    height: 215px;
+  }
+
+  .movie-name {
+    width: 150px;
+  }
 }

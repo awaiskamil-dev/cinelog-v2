@@ -56,7 +56,7 @@ function Navbar(){
             Home
           </Link>
         )}
-        {isLoading? null : (user? 
+        {isLoading? null : (user?
         ( 
           <>
             <Link to="/watchlist" className='watchlist-link'>
@@ -66,6 +66,7 @@ function Navbar(){
               className="nav-avatar-wrapper"
               onMouseEnter={() => setIsOpen(true)}
               onMouseLeave={() => setIsOpen(false)}
+              onClick={() => setIsOpen(prev => !prev)}
             >
               <div className="nav-avatar">
                 <img src={defaultAvatar} alt="User avatar" />
