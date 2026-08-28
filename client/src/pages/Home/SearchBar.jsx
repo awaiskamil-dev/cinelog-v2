@@ -33,7 +33,9 @@ function SearchBar({
       let url;
       const genreValue = genreSelect === 'Any' ? '' : genreSelect.toLowerCase();
       const yearValue = yearSelect === 'Any' ? '' : yearSelect;
-      const formatValue = formatSelect === 'Any' ? '' : formatSelect.toLowerCase();
+      const formatValue = formatSelect === 'Any' ? '' : (
+        formatSelect === 'Movie' ? 'movie' : 'tv'
+      );
 
       if(searchInput !== ''){
         url = `${API_URL}/movies/search?query=${searchInput}&genre=${genreValue}&year=${yearValue}&format=${formatValue}`;  

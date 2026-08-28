@@ -15,3 +15,9 @@
 .movie-grid{
   margin-top: 45px;
 }
+
+.no-results{
+  font-size: 18px;
+  font-weight: 700;
+  margin: auto;
+}

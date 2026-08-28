@@ -39,10 +39,19 @@ const Home = function(){
         <div className="results-grid">
           <h2>RESULTS</h2>
           <div className="results-section">
-            {results.map((item) => {
-              const myEntry = userEntries.find((entry) => entry.tmdbId === item.id);
-              return <MovieCard key={item.id} movie={item} status={myEntry?.status} onStatusChange={handleIconChange}/>
-            })}
+            {results.length === 0? 
+              (
+                <div className="no-results">
+                  No Results
+                </div>
+              )
+              :(
+                results.map((item) => {
+                  const myEntry = userEntries.find((entry) => entry.tmdbId === item.id);
+                  return <MovieCard key={item.id} movie={item} status={myEntry?.status} onStatusChange={handleIconChange}/>
+                })
+              ) 
+            }
           </div>
         </div>
       )
