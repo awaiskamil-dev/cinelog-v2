@@ -6,12 +6,29 @@
   margin-top: 45px;
   margin-bottom: 45px;
 }
+
 .results-section{
-  display: flex;
-  flex-direction: row;
-  gap: 30px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: clamp(20px, 3vw, 30px);
 }
+
+.results-section .movie-card{
+  width: min(100%, 185px);
+  justify-self: center;
+}
+
+.results-section .movie-poster,
+.results-section .card-overlay{
+  width: 100%;
+  height: auto;
+  aspect-ratio: 185 / 265;
+}
+
+.results-section .movie-name{
+  width: 100%;
+}
+
 .movie-grid{
   margin-top: 45px;
 }
@@ -20,4 +37,22 @@
   font-size: 18px;
   font-weight: 700;
   margin: auto;
+  grid-column: 1/-1;
+}
+
+@media (max-width: 768px){
+  .results-section{
+    grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+  }
+}
+
+@media (max-width: 480px){
+  .results-grid{
+    margin-top: 32px;
+  }
+
+  .results-section{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 12px;
+  }
 }
