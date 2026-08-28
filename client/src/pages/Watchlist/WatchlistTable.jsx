@@ -39,6 +39,11 @@ const WatchlistTable = function({title, entries}){
                   <td className="col-stats">{rating}</td>
                   <td className="col-stats">{entry.releaseDate}</td>
                   <td className="col-stats">{type}</td>
+
+                  <div className="mobile-metadata">
+                    <span className='mobile-rating'>★ {rating}</span>
+                    <span>{entry.releaseDate} · {type}</span>
+                  </div>
                 </tr>
             );
             })
