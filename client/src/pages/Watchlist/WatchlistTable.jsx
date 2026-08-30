@@ -1,10 +1,13 @@
 import { useNavigate } from 'react-router';
 import './WatchlistTable.css';
 import useListEditor from '../../context/ListEditorContext/useListEditor';
+import useUserEntries from '../../context/UserEntriesContext/useUserEntries'
+import WatchlistSkeletonRow from '../../components/WatchlistSkeletonRow';
 
 const WatchlistTable = function({title, entries}){
   const navigate = useNavigate();
   const {openEditor} = useListEditor();
+  const {loading} = useUserEntries();
   
   return(
     <div className="watchlist-table-section">
@@ -19,34 +22,40 @@ const WatchlistTable = function({title, entries}){
           </tr>
         </thead>
         <tbody>
-          {
-            entries.map((entry) => {
-              const type = entry.mediaType === 'movie' ? 'Movie' : 'TV';
-              const rating = entry.rating ? entry.rating : '-';
-              return(
-                <tr key={entry.tmdbId}>
-                  <td className="title-row">
-                    <div className="poster-popup">
-                      <img src={`https://image.tmdb.org/t/p/w500${entry.posterPath}`} alt="Movie Poster Popup"/>
-                    </div>
-                    <div className='poster-container'>
-                       <img className="poster-thumb" src={`https://image.tmdb.org/t/p/w500${entry.posterPath}`} 
-                        alt="Movie Poster" onClick={() => openEditor(entry)}/>
-                        <i className="fa-solid fa-ellipsis"></i>
-                    </div>
-                    <span className='entry-title' onClick={() => navigate(`/${entry.mediaType}/${entry.tmdbId}`)}>{entry.title}</span>
-                  </td>
-                  <td className="col-stats">{rating}</td>
-                  <td className="col-stats">{entry.releaseDate}</td>
-                  <td className="col-stats">{type}</td>
+          {loading? 
+            (
+              Array.from({ length: 4 }).map((_, index) => (
+                <WatchlistSkeletonRow key={index} />
+              ))
+            )
+            :(
+              entries.map((entry) => {
+                const type = entry.mediaType === 'movie' ? 'Movie' : 'TV';
+                const rating = entry.rating ? entry.rating : '-';
+                return(
+                  <tr key={entry.tmdbId}>
+                    <td className="title-row">
+                      <div className="poster-popup">
+                        <img src={`https://image.tmdb.org/t/p/w500${entry.posterPath}`} alt="Movie Poster Popup"/>
+                      </div>
+                      <div className='poster-container'>
+                        <img className="poster-thumb" src={`https://image.tmdb.org/t/p/w500${entry.posterPath}`} 
+                          alt="Movie Poster" onClick={() => openEditor(entry)}/>
+                          <i className="fa-solid fa-ellipsis"></i>
+                      </div>
+                      <span className='entry-title' onClick={() => navigate(`/${entry.mediaType}/${entry.tmdbId}`)}>{entry.title}</span>
+                    </td>
+                    <td className="col-stats">{rating}</td>
+                    <td className="col-stats">{entry.releaseDate}</td>
+                    <td className="col-stats">{type}</td>
 
-                  <div className="mobile-metadata">
-                    <span className='mobile-rating'>★ {rating}</span>
-                    <span>{entry.releaseDate} · {type}</span>
-                  </div>
-                </tr>
-            );
-            })
+                    <div className="mobile-metadata">
+                      <span className='mobile-rating'>★ {rating}</span>
+                      <span>{entry.releaseDate} · {type}</span>
+                    </div>
+                  </tr>
+                );
+              }))
           }
         </tbody>
       </table>

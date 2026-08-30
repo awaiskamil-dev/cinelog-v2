@@ -104,14 +104,14 @@ const logout = async (req, res) => {
 
   res.clearCookie('accessToken', {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'none',
+    secure: process.env.NODE_ENV !== 'development',
+    sameSite: process.env.NODE_ENV === 'development' ? 'lax' : 'none',
   });
 
   res.clearCookie('refreshToken', {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'none',
+    secure: process.env.NODE_ENV !== 'development',
+    sameSite: process.env.NODE_ENV === 'development' ? 'lax' : 'none',
   });
 
   res.status(StatusCodes.OK).json({ msg: 'user logged out!' });

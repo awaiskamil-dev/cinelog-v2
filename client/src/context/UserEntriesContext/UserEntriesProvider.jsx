@@ -6,6 +6,7 @@ import useToast from "../ToastContext/useToast";
 
 const UserEntriesProvider = ({children}) => {
   const [userEntries, setUserEntries] = useState([]);
+  const [loading, setLoading] = useState(false);
   const {user} = useAuth();
   const {showToast} = useToast();
 
@@ -16,6 +17,7 @@ const UserEntriesProvider = ({children}) => {
     }
     const fetchUserEntries = async () => {
       try{
+        setLoading(true);
         const response = await fetch(`${API_URL}/entries/me`, {
           credentials: 'include'
         });
@@ -24,6 +26,9 @@ const UserEntriesProvider = ({children}) => {
         setUserEntries(data.entries);
       }catch(err){
         console.log(err);
+      }
+      finally{
+        setLoading(false);
       }
     };
     fetchUserEntries();
@@ -264,7 +269,8 @@ const UserEntriesProvider = ({children}) => {
     setUserEntries,
     handleIconChange,
     handleStatusChange,
-    handleFavoriteButton
+    handleFavoriteButton,
+    loading
   };
   
   return(

@@ -17,7 +17,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import { useEffect } from 'react';
-import {useToast} from './context/ToastContext/useToast';
+import useToast from './context/ToastContext/useToast';
 import API_URL from './config';
 
 function App() {
