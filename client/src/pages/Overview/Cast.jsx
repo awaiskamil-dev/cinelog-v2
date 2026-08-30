@@ -11,7 +11,7 @@ const Cast = function({data}){
           cast.map((person) => {
             return(
               <div key={person.credit_id} className="cast-card">
-                <img className='card-photo' src={`https://image.tmdb.org/t/p/w500${person.profile_path}`}/>
+                <img className='cast-photo' src={`https://image.tmdb.org/t/p/w500${person.profile_path}`}/>
                 <span className="cast-name">{person.name}</span>
                 <span className="cast-character">{person.character}</span>
               </div>

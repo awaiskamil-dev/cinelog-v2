@@ -2,6 +2,7 @@ import Overview from "./Overview";
 import { useParams } from "react-router";
 import { useState, useEffect } from "react";
 import API_URL from "../../config";
+import OverviewSkeleton from "../../components/OverviewSkeleton";
 
 const TvOverview = function(){
   const {id} = useParams();
@@ -26,7 +27,7 @@ const TvOverview = function(){
   }, [id]);
 
   if(!data){
-    return <div></div>;
+    return <OverviewSkeleton/>;
   }
 
   return(

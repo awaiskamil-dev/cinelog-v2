@@ -2,6 +2,7 @@ import { useParams } from "react-router";
 import Overview from "./Overview";
 import { useEffect, useState } from "react";
 import API_URL from "../../config";
+import OverviewSkeleton from "../../components/OverviewSkeleton";
 
 const MovieOverview = function(){
   const {id} = useParams();
@@ -26,7 +27,7 @@ const MovieOverview = function(){
   }, [id]);
 
   if (!data) {
-    return <div></div>;
+    return <OverviewSkeleton/>;
   }
 
   return(
