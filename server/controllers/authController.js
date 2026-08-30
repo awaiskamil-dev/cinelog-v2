@@ -86,7 +86,7 @@ const login = async (req, res) => {
     }
     refreshToken = existingToken.refreshToken;
     attachCookiesToResponse({res, user: tokenUser, refreshToken});
-    res.status(StatusCodes.OK).json({user: tokenUser});
+    return res.status(StatusCodes.OK).json({user: tokenUser});
   }  
 
   refreshToken = crypto.randomBytes(40).toString('hex');
@@ -102,14 +102,17 @@ const login = async (req, res) => {
 const logout = async (req, res) => {
   await Token.findOneAndDelete({user: req.user.userId});
 
-  res.cookie('accessToken', 'logout', {
+  res.clearCookie('accessToken', {
     httpOnly: true,
-    expires: new Date(Date.now()),
-  })
-  res.cookie('refreshToken', 'logout', {
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'none',
+  });
+
+  res.clearCookie('refreshToken', {
     httpOnly: true,
-    expires: new Date(Date.now()),
-  })
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'none',
+  });
 
   res.status(StatusCodes.OK).json({ msg: 'user logged out!' });
 };
