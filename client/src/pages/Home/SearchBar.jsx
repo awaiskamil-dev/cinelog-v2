@@ -7,7 +7,7 @@ function SearchBar({
   genreSelect, setGenreSelect,
   yearSelect, setYearSelect,
   formatSelect, setFormatSelect,
-  setResults,
+  setResults, setLoading
 }){
   const [filtersOpen, setFiltersOpen] = useState(false);
 
@@ -27,34 +27,44 @@ function SearchBar({
       yearSelect === 'Any' &&
       formatSelect === 'Any'
     ){
+      setLoading(false);
       return;
     }
     const timeout = setTimeout(async () => {
-      let url;
-      const genreValue = genreSelect === 'Any' ? '' : genreSelect.toLowerCase();
-      const yearValue = yearSelect === 'Any' ? '' : yearSelect;
-      const formatValue = formatSelect === 'Any' ? '' : (
-        formatSelect === 'Movie' ? 'movie' : 'tv'
-      );
+      try{
+        setLoading(true);
+        let url;
+        const genreValue = genreSelect === 'Any' ? '' : genreSelect.toLowerCase();
+        const yearValue = yearSelect === 'Any' ? '' : yearSelect;
+        const formatValue = formatSelect === 'Any' ? '' : (
+          formatSelect === 'Movie' ? 'movie' : 'tv'
+        );
 
-      if(searchInput !== ''){
-        url = `${API_URL}/movies/search?query=${searchInput}&genre=${genreValue}&year=${yearValue}&format=${formatValue}`;  
-      }
-      else if(
-        genreSelect !== 'Any' ||
-        yearSelect !== 'Any' ||
-        formatSelect !== 'Any'
-      ){
-        url = `${API_URL}/movies/discover?genre=${genreValue}&year=${yearValue}&format=${formatValue}`;
-      }
+        if(searchInput !== ''){
+          url = `${API_URL}/movies/search?query=${searchInput}&genre=${genreValue}&year=${yearValue}&format=${formatValue}`;  
+        }
+        else if(
+          genreSelect !== 'Any' ||
+          yearSelect !== 'Any' ||
+          formatSelect !== 'Any'
+        ){
+          url = `${API_URL}/movies/discover?genre=${genreValue}&year=${yearValue}&format=${formatValue}`;
+        }
 
-      const response = await fetch(url);
-      const data = await response.json();
-      setResults(data.results);
+        const response = await fetch(url);
+        const data = await response.json();
+        setResults(data.results);
+      }
+      catch(err){
+        console.log(err);
+      }
+      finally{
+        setLoading(false);
+      }
     }, 300);
 
     return () => clearTimeout(timeout);
-  }, [searchInput, genreSelect, yearSelect, formatSelect, setResults]);
+  }, [searchInput, genreSelect, yearSelect, formatSelect, setResults, setLoading]);
 
   return (
     <div className="search-bar">

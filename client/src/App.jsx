@@ -16,9 +16,41 @@ import useListEditor from './context/ListEditorContext/useListEditor';
 import ProtectedRoute from './components/ProtectedRoute';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import { useEffect } from 'react';
+import {useToast} from './context/ToastContext/useToast';
+import API_URL from './config';
 
 function App() {
   const {isOpen} = useListEditor();
+  const {showToast} = useToast();
+
+  useEffect(() => {
+    let serverResponded = false;
+
+    const timer = setTimeout(() => {
+      if (!serverResponded) {
+        showToast(
+          'Server is waking up. This may take a moment.',
+          'info'
+        );
+      }
+    }, 8000);
+
+    const wakeServer = async () => {
+      try {
+        await fetch(`${API_URL}/health`);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        serverResponded = true;
+        clearTimeout(timer);
+      }
+    };
+
+    wakeServer();
+
+    return () => clearTimeout(timer);
+  }, [showToast]);
   
   return(
     <BrowserRouter>

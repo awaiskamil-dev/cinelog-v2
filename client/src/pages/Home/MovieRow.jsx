@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import API_URL from "../../config";
 import './MovieRow.css';
 import MovieCard from "./MovieCard";
-import useToast from '../../context/ToastContext/useToast';
 import MovieCardSkeleton from "../../components/MovieCardSkeleton";
 
 const MovieRow = function({title, endpoint, userEntries, onStatusChange}){
@@ -11,7 +10,6 @@ const MovieRow = function({title, endpoint, userEntries, onStatusChange}){
   const [showRightBtn, setShowRightBtn] = useState(true);
   const [loading, setLoading] = useState(true);
 
-  const {showToast} = useToast();
   const movieRowRef = useRef(null);
   
   useEffect(() => {
@@ -31,16 +29,6 @@ const MovieRow = function({title, endpoint, userEntries, onStatusChange}){
     };
     fetchResults();
   }, [endpoint, setResults]);
-
-  useEffect(() => {
-    if (!loading) return;
-
-    const timer = setTimeout(() => {
-      showToast('Server is waking up. This may take a moment.', 'info');
-    }, 6000);
-
-    return () => clearTimeout(timer);
-  }, [loading, showToast]);
 
   useEffect(() => {
     const cardsDiv = movieRowRef.current;

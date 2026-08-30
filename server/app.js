@@ -49,6 +49,10 @@ app.use(mongoSanitize());
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
 
+app.get('/api/v1/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
+
 app.use('/api/v1/auth', authLimiter, authRouter);
 app.use('/api/v1/entries', entryRouter);
 app.use('/api/v1/movies', apiLimiter, movieRouter);

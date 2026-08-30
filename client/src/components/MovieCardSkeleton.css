@@ -20,31 +20,27 @@
   animation: skeleton-pulse 1.4s ease-in-out infinite;
 }
 
+.results-section .skeleton-card{
+  width: min(100%, 185px);
+  justify-self: center;
+}
+
+.results-section .skeleton-poster{
+  width: 100%;
+  height: auto;
+  aspect-ratio: 185 / 265;
+}
+
+.results-section .skeleton-title{
+  width: 75%;
+}
+
 @keyframes skeleton-pulse {
-  0% {
+  0%, 100% {
     opacity: 0.45;
   }
 
   50% {
     opacity: 1;
-  }
-
-  100% {
-    opacity: 0.45;
-  }
-}
-
-@media (max-width: 480px) {
-  .skeleton-card {
-    width: 150px;
-  }
-
-  .skeleton-poster {
-    width: 150px;
-    height: 215px;
-  }
-
-  .skeleton-title {
-    width: 110px;
   }
 }

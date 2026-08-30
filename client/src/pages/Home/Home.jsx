@@ -4,6 +4,7 @@ import MovieRow from "./MovieRow";
 import MovieCard from "./MovieCard";
 import './Home.css';
 import useUserEntries from '../../context/UserEntriesContext/useUserEntries';
+import MovieCardSkeleton from "../../components/MovieCardSkeleton";
 
 const Home = function(){
   const [searchInput, setSearchInput] = useState('');
@@ -11,6 +12,7 @@ const Home = function(){
   const [yearSelect, setYearSelect] = useState('Any');
   const [formatSelect, setFormatSelect] = useState('Any');
   const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const {userEntries, handleIconChange} = useUserEntries();
 
@@ -32,6 +34,7 @@ const Home = function(){
         formatSelect={formatSelect}
         setFormatSelect={setFormatSelect}
         setResults={setResults}
+        setLoading={setLoading}
       />
 
       {filtersActive? 
@@ -39,17 +42,24 @@ const Home = function(){
         <div className="results-grid">
           <h2>RESULTS</h2>
           <div className="results-section">
-            {results.length === 0? 
-              (
-                <div className="no-results">
-                  No Results
-                </div>
+            {loading? 
+                Array.from({ length: 12 }).map((_, index) => (
+                  <MovieCardSkeleton key={index} />
+                )
               )
               :(
-                results.map((item) => {
-                  const myEntry = userEntries.find((entry) => entry.tmdbId === item.id);
-                  return <MovieCard key={item.id} movie={item} status={myEntry?.status} onStatusChange={handleIconChange}/>
-                })
+                results.length === 0? 
+                (
+                  <div className="no-results">
+                    No Results
+                  </div>
+                )
+                :(
+                  results.map((item) => {
+                    const myEntry = userEntries.find((entry) => entry.tmdbId === item.id);
+                    return <MovieCard key={item.id} movie={item} status={myEntry?.status} onStatusChange={handleIconChange}/>
+                  })
+                ) 
               ) 
             }
           </div>
