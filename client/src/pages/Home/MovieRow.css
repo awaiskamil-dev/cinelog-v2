@@ -42,3 +42,7 @@
   opacity: 0;
   pointer-events: none;
 }
+
+.movie-row-div .loading{
+  overflow-x: hidden;
+}

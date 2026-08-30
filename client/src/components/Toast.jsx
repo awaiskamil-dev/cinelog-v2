@@ -6,8 +6,17 @@ const Toast = function(){
   if(!toast) return null;
 
   return(
-    <div className={`toast ${toast.type === 'success' ? 'toast--success' : ''}`}>
-      <i className={`fa-solid ${toast.type === 'success' ? 'fa-circle-check' : 'fa-circle-xmark'}`}></i>
+    <div className={`
+        toast ${toast.type === 'success' && 'toast--success'} ${toast.type === 'info'}
+        ${toast.type === 'info' && 'toast--info'}
+      `}
+      >
+      <i className={`fa-solid 
+        ${toast.type === 'success' && 'fa-circle-check'}  
+        ${toast.type === 'error' && 'fa-circle-xmark'}
+        ${toast.type === 'info' && 'fa-circle-info'}
+        `}>
+      </i>
       {toast.message}
     </div>
   );
