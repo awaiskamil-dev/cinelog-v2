@@ -43,6 +43,30 @@ The project includes a complete authentication flow with email verification, per
 - Forgot/reset password flow
 - Secure logout and refresh-token handling
 
+## Screenshots
+
+### Home Page
+
+![CineLog Home Page](./screenshots/desktop-home.png)
+
+### Movie Overview
+
+![CineLog Movie Overview](./screenshots/desktop-overview.png)
+
+### Watchlist
+
+![CineLog Watchlist](./screenshots/desktop-watchlist.png)
+
+### Mobile View
+
+<p align="center">
+  <img src="./screenshots/mobile-home.png" width="29%">
+  &nbsp;&nbsp;
+  <img src="./screenshots/mobile-overview.png" width="29%">
+  &nbsp;&nbsp;
+  <img src="./screenshots/mobile-watchlist.png" width="29%">
+</p>
+
 ## Tech Stack
 
 ### Frontend
