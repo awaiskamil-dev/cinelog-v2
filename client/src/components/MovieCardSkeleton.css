@@ -44,3 +44,16 @@
     opacity: 1;
   }
 }
+
+@media (max-width: 480px){
+  .movie-row-div .skeleton-card{
+    width: 150px;
+  }
+  .movie-row-div .skeleton-poster{
+    width: 150px;
+    height: 215px;
+  }
+  .movie-row-div .skeleton-title{
+    width: 115px;
+  }
+}
