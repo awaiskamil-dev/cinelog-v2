@@ -9,7 +9,7 @@ function ListEditorModal() {
   const { currentMovie, currentEntry, closeEditor } = useListEditor();
 
   const [status, setStatus] = useState(currentEntry?.status || 'plan-to-watch');
-  const [rating, setRating] = useState(currentEntry?.rating || 0);
+  const [rating, setRating] = useState(currentEntry?.rating || '');
   const [review, setReview] = useState(currentEntry?.review || '');
 
   const {userEntries, setUserEntries} = useUserEntries();
@@ -27,6 +27,8 @@ function ListEditorModal() {
     const year = currentMovie? (currentMovie.media_type === 'movie'
       ? Number(currentMovie.release_date?.slice(0, 4))
       : Number(currentMovie.first_air_date?.slice(0, 4))) : '';
+
+    const normalizedRating = rating === '' ? null : rating;
     
     const previousEntries = userEntries;
 
@@ -34,7 +36,7 @@ function ListEditorModal() {
       setUserEntries(prev =>
         prev.map(entry =>
           entry.tmdbId === currentEntry.tmdbId
-            ? { ...entry, status, rating, review}
+            ? { ...entry, status, rating: normalizedRating, review}
             : entry
         )
       );
@@ -48,7 +50,7 @@ function ListEditorModal() {
           releaseDate: year,
           mediaType: currentMovie.media_type,
           status: status,
-          rating,
+          rating: normalizedRating,
         }
       ]);
     }
@@ -73,7 +75,7 @@ function ListEditorModal() {
             tmdbId: currentEntry.tmdbId,
             title: currentEntry.title,
             status,
-            rating,
+            rating: rating === '' ? null : rating,
             review
           })
         });
@@ -99,7 +101,7 @@ function ListEditorModal() {
             releaseDate: year,
             mediaType: currentMovie.media_type,
             status: status,
-            rating,
+            rating: rating === '' ? null : rating,
           })
         });
         if (!res.ok) {
@@ -175,11 +177,12 @@ function ListEditorModal() {
             <label>Rating</label>
             <input
               type="number"
-              min="0"
+              min="1"
               max="10"
               step="0.5"
-              value={rating}
-              onChange={(e) => setRating(Number(e.target.value))}
+              value={rating || ''}
+              placeholder='-'
+              onChange={(e) => setRating((e.target.value === '' ? '' : Number(e.target.value)))}
             />
           </div>
 
